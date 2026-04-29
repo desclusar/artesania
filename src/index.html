@@ -1,36 +1,79 @@
 <!doctype html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" type="text/css" href="./assets/styles/main.scss" />
-    <!-- do not remove this line! -->
-    <title>UOC Boilerplate</title>
-  </head>
-  <body>
-    <div class="uoc-container">
-      <picture>
-        <source
-          srcset="./assets/images/logo.png?as=webp&width=350"
-          type="image/webp"
-        />
-        <img
-          src="./assets/images/logo.png?width=350"
-          alt="Universitat Oberta de Catalunya"
-          class="uoc-logo"
-        />
-      </picture>
-      <h1 class="uoc-title">Hello, UOC!</h1>
-      <p>
-        This is a starter template for the Advanced HTML and CSS Tools courses
-        from the Master's Program in Multimedia Applications and the Master's
-        Program in Web App and Website Development at the Universitat Oberta de
-        Catalunya.
-      </p>
-    </div>
-    <include src="./views/footer.html"></include>
-    <script type="module" src="./assets/scripts/main.js"></script>
-    <!-- do not remove this line! -->
-  </body>
+<html lang="ca">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/src/assets/styles/main.scss" />
+  <!-- do not remove this line! -->
+  <title>Terrissa a Sant Fost</title>
+</head>
+
+<body class="page-home">
+
+  <div class="poster-container">
+
+    <include src="./views/header.html"></include>
+
+    <main class="home-main">
+
+      <h1>Jornades de ceràmica artesanal</h1>
+      <h2>Primavera 2026</h2>
+
+      <section>
+
+        <h3 class="element-invisible">Agenda d'activitats</h3>
+        <ul>
+          <li class="p-2">
+            <h4>Taller de ceràmica rústica</h4>
+            <p>Aprèn les tècniques tradicionals de modelatge i decoració de ceràmica rústica, inspirada en les formes i
+              textures de la natura.</p>
+            <h5>Data: 15 de maig de 2026</h5>
+            <h5>Hora: 17:00 - 19:00</h5>
+          </li>
+
+          <li class="p-2">
+            <h4>Curs de cocció al forn de llenya</h4>
+            <p>Descobreix els secrets de la cocció al forn de llenya, una tècnica ancestral que aporta un acabat únic i
+              característic a les peces de ceràmica.</p>
+            <h5>Data: 16 de maig de 2026</h5>
+            <h5>Hora: 17:00 - 19:00</h5>
+          </li>
+
+          <li class="p-2">
+            <h4>Workshop de decoració amb cendres i pigments naturals</h4>
+            <p>Explora les possibilitats decoratives de les cendres i els pigments naturals, i crea peces úniques amb
+              textures i colors inspirats en la terra.</p>
+            <h5>Data: 17 de maig de 2026</h5>
+            <h5>Hora: 17:00 - 19:00</h5>
+          </li>
+
+
+          <li class="p-2">
+            <h4>Inscriu-te abans que s'acabin les places</h4>
+            <p class="lh-sm">Les places són limitades, així que no esperis més per formar part d'aquestes
+              jornades
+              de
+              ceràmica
+              artesanal.
+              Tant si ets un aficionat com si tens experiència prèvia, aquestes activitats estan dissenyades per a
+              tots
+              els
+              nivells i t'oferiran l'oportunitat de connectar amb altres amants de la ceràmica i aprendre de
+              professionals
+              del
+              sector.</p>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <include src="./views/footer.html"></include>
+  <script type="module" src="/src/assets/scripts/main.js"></script>
+  <!-- do not remove this line! -->
+</body>
+
 </html>

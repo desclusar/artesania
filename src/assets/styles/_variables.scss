@@ -1,12 +1,120 @@
 @use "sass:color";
+@use "sass:map";
+
+/*------------------------------------*\
+  #VARIABLES
+\*------------------------------------*/
+
+/*------------------------------------*\
+  #COLORS
+\*------------------------------------*/
+
+$theme-colors: (
+  "primary": #b86f52,
+  "secondary": #5d8aa8,
+  "tertiary": #f5f1e6,
+  "neutral": #706d69,
+);
+
+$white: #fff;
+
+// CAPA 1 — hex (font única: llegits de $theme-colors i $white)
+:root {
+  --color-primary: #{map.get($theme-colors, "primary")};
+  --color-secondary: #{map.get($theme-colors, "secondary")};
+  --color-tertiary: #{map.get($theme-colors, "tertiary")};
+  --color-neutral: #{map.get($theme-colors, "neutral")};
+  --color-white: #{$white};
+}
+
+// CAPA 2 — color(display-p3)
+@supports (color: color(display-p3 0 0 0)) {
+  :root {
+    --color-primary: color(display-p3 0.72 0.44 0.32);
+    --color-secondary: color(display-p3 0.36 0.54 0.66);
+    --color-tertiary: color(display-p3 0.96 0.94 0.9);
+    --color-neutral: color(display-p3 0.44 0.43 0.41);
+  }
+}
+
+// CAPA 3 — lch() i lab()
+@supports (color: lch(0 0 0)) {
+  :root {
+    --color-primary: lch(55% 40 42);
+    --color-secondary: lch(56% 25 234);
+    --color-tertiary: lch(96% 8 85);
+    --color-neutral: lch(46% 5 58);
+  }
+}
+
+// CAPA 4 — oklch() i oklab()
+@supports (color: oklch(0 0 0)) {
+  :root {
+    --color-primary: oklch(60% 0.11 42);
+    --color-secondary: oklch(58% 0.07 234);
+    --color-tertiary: oklch(96% 0.015 85);
+    --color-neutral: oklch(48% 0.01 60);
+    --color-white: oklch(100% 0 0);
+  }
+}
+
+// CAPA 5 — color(rec2020)
+@supports (color: color(rec2020 0 0 0)) {
+  :root {
+    --color-primary: color(rec2020 0.65 0.38 0.26);
+    --color-secondary: color(rec2020 0.3 0.49 0.62);
+    --color-tertiary: color(rec2020 0.94 0.92 0.88);
+    --color-neutral: color(rec2020 0.4 0.39 0.38);
+  }
+}
+
+/*------------------------------------*\
+  #COLORS SEMÀNTICS I DERIVATS
+\*------------------------------------*/
+
+:root {
+  --color-terra: var(--color-primary);
+  --color-terra-fosc: #{color.adjust(
+      map.get($theme-colors, "primary"),
+      $lightness: -15%
+    )};
+  --color-crema: var(--color-tertiary);
+  --color-blanc: var(--color-tertiary);
+  --color-gris-mig: var(--color-neutral);
+  --color-gris-fosc: #{color.adjust(
+      map.get($theme-colors, "neutral"),
+      $lightness: -20%
+    )};
+
+  // Colors de feedback
+  --color-success: #3d8b5c;
+  --color-warning: #c9841a;
+  --color-error: #b53a30;
+
+  --color-vermell-raku: #c04030;
+}
+
+@supports (color: oklch(0 0 0)) {
+  :root {
+    --color-success: oklch(55% 0.13 150);
+    --color-warning: oklch(68% 0.15 65);
+    --color-error: oklch(47% 0.14 25);
+    --color-vermell-raku: oklch(45% 0.15 25);
+  }
+}
+
+/*------------------------------------*\
+  #TIPOGRAFIA
+\*------------------------------------*/
 
 $font-family-sans-serif:
-  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-$font-family-serif: "Georgia", "Times New Roman", serif;
+  "Manrope",
+  system-ui,
+  -apple-system,
+  "Segoe UI",
+  Roboto,
+  Arial,
+  sans-serif;
+$font-family-serif: "Noto Serif", Georgia, "Times New Roman", serif;
 
-$uoc-corporate: #000078;
-$uoc-masterbrand: #73edff;
-$uoc-bg: color.scale($uoc-masterbrand, $lightness: 70%);
-
-$mqMinWidth: 420px;
+$font-family-base: $font-family-sans-serif;

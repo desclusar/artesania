@@ -1,0 +1,21 @@
+@use "../variables" as *;
+
+.navbar {
+  .navbar-brand {
+    font-family: $font-family-serif;
+    color: var(--color-tertiary);
+  }
+
+  .nav-link {
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition:
+      color 0.3s ease,
+      transform 0.3s ease-out;
+
+    &:hover {
+      color: var(--color-secondary);
+      transform: translateY(-4px);
+    }
+  }
+}

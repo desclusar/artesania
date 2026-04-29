@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/src/assets/styles/main.scss" />
+    <title>Terrissa a Sant Fost | Inscripció</title>
+</head>
+
+<body class="page-inscripcio d-flex flex-column min-vh-100 gap-3">
+
+    <include src="./views/header.html"></include>
+
+    <main class="flex-grow-1">
+
+        <section class="container-fluid inscripcio-hero">
+            <div class="inscripcio-hero__inner">
+                <h1 class="inscripcio-hero__title">Inscripció a les Jornades de Terrissa</h1>
+                <p class="inscripcio-hero__subtitle">Sant Fost de Campsentelles · Edició 2026</p>
+                <p class="inscripcio-hero__dates">Del 15 al 17 de maig de 2026</p>
+            </div>
+        </section>
+
+        <section class="inscripcio-container container">
+
+            <div class="inscripcio-info p-4">
+                <p>Emplena el formulari per reservar la teva plaça. Les places són limitades i s'assignen per ordre
+                    d'inscripció.</p>
+                <meter class="inscripcio-info__meter" id="places-meter" min="0" max="60" low="20" high="45" optimum="10"
+                    value="38">
+                    38 de 60 places ocupades
+                </meter>
+                <label for="places-meter" class="inscripcio-info__meter-label">Places disponibles: <output
+                        id="places-output">22</output> de 60</label>
+                <progress class="inscripcio-info__progress" id="inscripcio-progress" max="100" value="63">63%</progress>
+            </div>
+
+            <form id="form-inscripcio" class="inscripcio-form" method="post" action="/inscripcio/enviar"
+                enctype="multipart/form-data" novalidate autocomplete="on"
+                aria-label="Formulari d'inscripció a les Jornades de Terrissa" netlify>
+                <input type="hidden" name="edicio" value="2026">
+                <input type="hidden" name="csrf_token" value="abc123xyz">
+
+                <!-- ===== 1. DADES PERSONALS ===== -->
+                <fieldset class="form-section" id="seccio-personal">
+                    <legend class="form-section__legend">
+                        <span class="form-section__num">1</span>
+                        Dades personals
+                    </legend>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="nom" class="form-label form-label--required">Nom</label>
+                            <input type="text" id="nom" name="nom" class="form-control" placeholder="El teu nom"
+                                required minlength="2" maxlength="50" autocomplete="given-name" aria-required="true"
+                                aria-describedby="nom-hint">
+                            <small id="nom-hint" class="form-hint">Tal com apareix al DNI</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cognoms" class="form-label form-label--required">Cognoms</label>
+                            <input type="text" id="cognoms" name="cognoms" class="form-control"
+                                placeholder="Els teus cognoms" required minlength="2" maxlength="100"
+                                autocomplete="family-name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label form-label--required">Correu electrònic</label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="nom@exemple.cat" required autocomplete="email" inputmode="email"
+                                aria-required="true">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email-confirm" class="form-label form-label--required">Confirma el
+                                correu</label>
+                            <input type="email" id="email-confirm" name="email_confirm" class="form-control"
+                                placeholder="nom@exemple.cat" required autocomplete="off" inputmode="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefon" class="form-label">Telèfon de contacte</label>
+                            <input type="tel" id="telefon" name="telefon" class="form-control"
+                                placeholder="+34 600 000 000" pattern="[\+]?[0-9\s\-]{9,15}" autocomplete="tel"
+                                inputmode="tel">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="data-naixement" class="form-label form-label--required">Data de
+                                naixement</label>
+                            <input type="date" id="data-naixement" name="data_naixement" class="form-control" required
+                                min="1924-01-01" max="2010-12-31" autocomplete="bday">
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <label for="adreca" class="form-label">Adreça</label>
+                            <input type="text" id="adreca" name="adreca" class="form-control"
+                                placeholder="Carrer, número, pis..." autocomplete="street-address" maxlength="200">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="poblacio" class="form-label form-label--required">Població</label>
+                            <input type="text" id="poblacio" name="poblacio" class="form-control"
+                                placeholder="La teva població" required list="poblacions-suggerides"
+                                autocomplete="address-level2">
+                            <datalist id="poblacions-suggerides">
+                                <option value="Sant Fost de Campsentelles">
+                                <option value="Mollet del Vallès">
+                                <option value="Montmeló">
+                                <option value="Santa Perpètua de Mogoda">
+                                <option value="La Llagosta">
+                                <option value="Granollers">
+                                <option value="Barcelona">
+                                <option value="Badalona">
+                                <option value="Sabadell">
+                                <option value="Terrassa">
+                            </datalist>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="codi-postal" class="form-label">Codi postal</label>
+                            <input type="text" id="codi-postal" name="codi_postal" class="form-control"
+                                placeholder="08000" pattern="[0-9]{5}" maxlength="5" inputmode="numeric"
+                                autocomplete="postal-code">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pais" class="form-label form-label--required">País</label>
+                            <select id="pais" name="pais" class="form-control form-select" required
+                                autocomplete="country">
+                                <option value="" disabled selected>Selecciona el teu país</option>
+                                <optgroup label="Països principals">
+                                    <option value="ES">Espanya</option>
+                                    <option value="FR">França</option>
+                                    <option value="PT">Portugal</option>
+                                    <option value="IT">Itàlia</option>
+                                    <option value="DE">Alemanya</option>
+                                </optgroup>
+                                <optgroup label="Altres">
+                                    <option value="GB">Regne Unit</option>
+                                    <option value="NL">Països Baixos</option>
+                                    <option value="BE">Bèlgica</option>
+                                    <option value="CH">Suïssa</option>
+                                    <option value="AT">Àustria</option>
+                                    <option value="OTHER">Altre</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <fieldset class="form-fieldset-inline">
+                                <legend class="form-label">Gènere</legend>
+                                <div class="form-radio-group">
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="genere" value="dona" class="form-radio">
+                                        Dona
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="genere" value="home" class="form-radio">
+                                        Home
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="genere" value="no-binari" class="form-radio">
+                                        No binari
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="genere" value="prefereixo-no-dir" class="form-radio"
+                                            checked>
+                                        Prefereixo no dir-ho
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <!-- ===== 2. SELECCIÓ DE TALLERS ===== -->
+                <fieldset class="form-section" id="seccio-tallers">
+                    <legend class="form-section__legend">
+                        <span class="form-section__num">2</span>
+                        Selecció de tallers
+                    </legend>
+
+                    <p class="form-section__desc">Selecciona els tallers als quals vols assistir. Pots escollir fins a 3
+                        tallers per dia.</p>
+
+                    <div class="form-grid">
+
+                        <div class="form-group form-group--full">
+                            <label for="dies" class="form-label form-label--required">Dies d'assistència</label>
+                            <select id="dies" name="dies[]" class="form-control form-select" required multiple size="3">
+                                <option value="2026-05-15">Divendres 15 de maig</option>
+                                <option value="2026-05-16">Dissabte 16 de maig</option>
+                                <option value="2026-05-17">Diumenge 17 de maig</option>
+                            </select>
+                            <small class="form-hint">Mantén Ctrl (o Cmd al Mac) per seleccionar múltiples dies</small>
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <fieldset class="form-fieldset-block">
+                                <legend class="form-label form-label--required">Tallers del matí (10h–14h)</legend>
+                                <div class="form-checkbox-grid">
+                                    <label class="form-checkbox-label">
+                                        <input type="checkbox" name="tallers_mati[]" value="torn-manual"
+                                            class="form-checkbox">
+                                        <span class="form-checkbox-text">
+                                            <strong>Torn manual</strong>
+                                            <em>Introducció a la tècnica del torn de pedal</em>
+                                        </span>
+                                    </label>
+                                    <label class="form-checkbox-label">
+                                        <input type="checkbox" name="tallers_mati[]" value="modelatge"
+                                            class="form-checkbox">
+                                        <span class="form-checkbox-text">
+                                            <strong>Modelatge a mà</strong>
+                                            <em>Tècnica de pelluc i colombí</em>
+                                        </span>
+                                    </label>
+                                    <label class="form-checkbox-label">
+                                        <input type="checkbox" name="tallers_mati[]" value="esmalts"
+                                            class="form-checkbox">
+                                        <span class="form-checkbox-text">
+                                            <strong>Esmalts i cobertes</strong>
+                                            <em>Preparació i aplicació d'esmalts ceràmics</em>
+                                        </span>
+                                    </label>
+                                    <label class="form-checkbox-label">
+                                        <input type="checkbox" name="tallers_mati[]" value="cocció-raku"
+                                            class="form-checkbox">
+                                        <span class="form-checkbox-text">
+                                            <strong>Cocció Raku</strong>
+                                            <em>Tècnica japonesa de baixa temperatura</em>
+                                        </span>
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <fieldset class="form-fieldset-block">
+                                <legend class="form-label">Tallers de la tarda (16h–20h)</legend>
+                                <div class="form-checkbox-grid">
+                                    <label class="form-checkbox-label">
+                                        <input type="checkbox" name="tallers_tarda[]" value="decoracio-engalba"
+                                            class="form-checkbox">
+                                        <span class="form-checkbox-text">
+                                            <strong>Decoració amb engalbes</strong>
+                                            <em>Color i textura sobre argila crua</em>
+                                        </span>
+                                    </label>
+                                    <label class="form-checkbox-label">
+                                        <input type="checkbox" name="tallers_tarda[]" value="ceramica-foc"
+                                            class="form-checkbox">
+                                        <span class="form-checkbox-text">
+                                            <strong>Ceràmica al foc de llenya</strong>
+                                            <em>Forn tradicional anagama</em>
+                                        </span>
+                                    </label>
+                                    <label class="form-checkbox-label">
+                                        <input type="checkbox" name="tallers_tarda[]" value="escriptura-ceràmica"
+                                            class="form-checkbox">
+                                        <span class="form-checkbox-text">
+                                            <strong>Escriptura sobre ceràmica</strong>
+                                            <em>Cal·ligrafia i sgraffito</em>
+                                        </span>
+                                    </label>
+                                    <label class="form-checkbox-label">
+                                        <input type="checkbox" name="tallers_tarda[]" value="historia-terrissa"
+                                            class="form-checkbox" disabled>
+                                        <span class="form-checkbox-text">
+                                            <strong>Història de la terrissa catalana</strong>
+                                            <em>Conferència · Places esgotades</em>
+                                        </span>
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="taller-prioritari" class="form-label">Taller prioritari</label>
+                            <select id="taller-prioritari" name="taller_prioritari" class="form-control form-select">
+                                <option value="">Cap preferència especial</option>
+                                <option value="torn-manual">Torn manual</option>
+                                <option value="modelatge">Modelatge a mà</option>
+                                <option value="esmalts">Esmalts i cobertes</option>
+                                <option value="cocció-raku">Cocció Raku</option>
+                                <option value="decoracio-engalba">Decoració amb engalbes</option>
+                                <option value="ceramica-foc">Ceràmica al foc de llenya</option>
+                                <option value="escriptura-ceràmica">Escriptura sobre ceràmica</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <!-- ===== 3. NIVELL I EXPERIÈNCIA ===== -->
+                <fieldset class="form-section" id="seccio-nivell">
+                    <legend class="form-section__legend">
+                        <span class="form-section__num">3</span>
+                        Nivell i experiència
+                    </legend>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="nivell" class="form-label form-label--required">Nivell de ceràmica</label>
+                            <select id="nivell" name="nivell" class="form-control form-select" required>
+                                <option value="" disabled selected>Selecciona el teu nivell</option>
+                                <optgroup label="Sense experiència">
+                                    <option value="principiant-absolut">Principiant absolut (mai he tocat argila)
+                                    </option>
+                                    <option value="principiant">Principiant (1–2 tallers anteriors)</option>
+                                </optgroup>
+                                <optgroup label="Experiència bàsica">
+                                    <option value="basic">Bàsic (1 any d'experiència)</option>
+                                    <option value="elemental">Elemental (2–3 anys)</option>
+                                </optgroup>
+                                <optgroup label="Experiència avançada">
+                                    <option value="intermedi">Intermedi (3–5 anys)</option>
+                                    <option value="avançat">Avançat (+5 anys)</option>
+                                    <option value="professional">Professional / Artesà</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="anys-experiencia" class="form-label">Anys d'experiència</label>
+                            <input type="number" id="anys-experiencia" name="anys_experiencia" class="form-control"
+                                min="0" max="80" step="1" placeholder="0" inputmode="numeric">
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <label for="nivell-rang" class="form-label">
+                                Autovaloració del nivell: <output id="nivell-rang-output"
+                                    for="nivell-rang">5</output>/10
+                            </label>
+                            <input type="range" id="nivell-rang" name="nivell_rang" class="form-range" min="1" max="10"
+                                step="1" value="5"
+                                oninput="document.getElementById('nivell-rang-output').value = this.value">
+                            <div class="form-range-labels">
+                                <span>Principiant</span>
+                                <span>Expert</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <label for="bio-ceramica" class="form-label">Descriu la teva trajectòria en ceràmica</label>
+                            <textarea id="bio-ceramica" name="bio_ceramica" class="form-control form-textarea" rows="4"
+                                cols="50" maxlength="500"
+                                placeholder="Explica breument la teva experiència, on has après, quins estils et interessen..."
+                                wrap="soft"></textarea>
+                            <small class="form-hint form-hint--counter">Màxim 500 caràcters</small>
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <label for="portfolio" class="form-label">Mostra el teu treball (opcional)</label>
+                            <input type="file" id="portfolio" name="portfolio[]" class="form-file"
+                                accept="image/jpeg,image/png,image/webp,image/gif,.pdf" multiple
+                                aria-describedby="portfolio-hint">
+                            <small id="portfolio-hint" class="form-hint">Pots adjuntar fins a 5 imatges (JPG, PNG, WebP)
+                                o un PDF. Mida màxima: 10 MB per fitxer.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="web-personal" class="form-label">Web o portfolio en línia</label>
+                            <input type="url" id="web-personal" name="web_personal" class="form-control"
+                                placeholder="https://www.exemple.cat" pattern="https?://.+" autocomplete="url"
+                                inputmode="url">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="color-preferit" class="form-label">Color de terra preferit</label>
+                            <div class="form-color-group">
+                                <input type="color" id="color-preferit" name="color_preferit" class="form-color"
+                                    value="#8c5a3c" title="Escull el color d'argila que més t'agrada">
+                                <span class="form-color-label">Fes clic per escollir el teu color d'argila
+                                    preferit</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <!-- ===== 4. TRANSPORT I ALLOTJAMENT ===== -->
+                <fieldset class="form-section" id="seccio-logistica">
+                    <legend class="form-section__legend">
+                        <span class="form-section__num">4</span>
+                        Transport i allotjament
+                    </legend>
+
+                    <div class="form-grid">
+
+                        <div class="form-group form-group--full">
+                            <fieldset class="form-fieldset-inline">
+                                <legend class="form-label form-label--required">Com arribaràs a Sant Fost?</legend>
+                                <div class="form-radio-group form-radio-group--vertical">
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="transport" value="vehicle-propi" class="form-radio"
+                                            required>
+                                        Amb vehicle propi
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="transport" value="bus-organitzat" class="form-radio">
+                                        Bus organitzat des de Mollet del Vallès (+5€)
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="transport" value="transport-public"
+                                            class="form-radio">
+                                        Transport públic (RENFE + bus local)
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="transport" value="compartit" class="form-radio">
+                                        Cotxe compartit (m'apunto a la bossa de transport)
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <fieldset class="form-fieldset-inline">
+                                <legend class="form-label">Necessites allotjament?</legend>
+                                <div class="form-radio-group">
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="allotjament" value="no" class="form-radio" checked>
+                                        No, no necessito allotjament
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="allotjament" value="si-individual" class="form-radio">
+                                        Sí, habitació individual (+45€/nit)
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="allotjament" value="si-doble" class="form-radio">
+                                        Sí, habitació doble (+30€/nit per persona)
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="allotjament" value="camping" class="form-radio">
+                                        Sí, zona de càmping (+10€/nit)
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hora-arribada" class="form-label">Hora estimada d'arribada</label>
+                            <input type="time" id="hora-arribada" name="hora_arribada" class="form-control" min="08:00"
+                                max="22:00" step="900">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="data-hora-sortida" class="form-label">Sortida prevista</label>
+                            <input type="datetime-local" id="data-hora-sortida" name="data_hora_sortida"
+                                class="form-control" min="2026-05-15T08:00" max="2026-05-17T23:00">
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <!-- ===== 5. ALIMENTACIÓ I NECESSITATS ===== -->
+                <fieldset class="form-section" id="seccio-alimentacio">
+                    <legend class="form-section__legend">
+                        <span class="form-section__num">5</span>
+                        Alimentació i necessitats especials
+                    </legend>
+
+                    <div class="form-grid">
+
+                        <div class="form-group form-group--full">
+                            <fieldset class="form-fieldset-block">
+                                <legend class="form-label">Règim alimentari</legend>
+                                <div class="form-checkbox-group">
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="dieta[]" value="vegetaria" class="form-checkbox">
+                                        Vegetarià/ana
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="dieta[]" value="vega" class="form-checkbox">
+                                        Vegà/ana
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="dieta[]" value="sense-gluten"
+                                            class="form-checkbox">
+                                        Sense gluten
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="dieta[]" value="sense-lactosa"
+                                            class="form-checkbox">
+                                        Sense lactosa
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="dieta[]" value="halal" class="form-checkbox">
+                                        Halal
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="dieta[]" value="kosher" class="form-checkbox">
+                                        Kosher
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <label for="al·lergies" class="form-label">Al·lèrgies o intoleràncies alimentàries</label>
+                            <input type="search" id="al·lergies" name="allergies" class="form-control"
+                                placeholder="Fruites seques, mol·luscs, ou..." list="al·lergies-comunes"
+                                autocomplete="off">
+                            <datalist id="al·lergies-comunes">
+                                <option value="Fruites seques">
+                                <option value="Cacauets">
+                                <option value="Marisc">
+                                <option value="Peix">
+                                <option value="Ou">
+                                <option value="Llet">
+                                <option value="Soia">
+                                <option value="Sèsam">
+                                <option value="Api">
+                                <option value="Mostassa">
+                            </datalist>
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <label for="necessitats-especials" class="form-label">Necessitats especials o
+                                d'accessibilitat</label>
+                            <textarea id="necessitats-especials" name="necessitats_especials"
+                                class="form-control form-textarea" rows="3" maxlength="300"
+                                placeholder="Cadira de rodes, dificultats de mobilitat, necessitats de salut, etc."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mida-davantal" class="form-label">Mida del davantal de treball</label>
+                            <select id="mida-davantal" name="mida_davantal" class="form-control form-select">
+                                <option value="">Selecciona la mida</option>
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M" selected>M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <!-- ===== 6. PAGAMENT ===== -->
+                <fieldset class="form-section" id="seccio-pagament">
+                    <legend class="form-section__legend">
+                        <span class="form-section__num">6</span>
+                        Informació de pagament
+                    </legend>
+
+                    <div class="form-grid">
+
+                        <div class="form-group form-group--full">
+                            <fieldset class="form-fieldset-inline">
+                                <legend class="form-label form-label--required">Mètode de pagament</legend>
+                                <div class="form-radio-group">
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="pagament" value="targeta" class="form-radio" required>
+                                        Targeta de crèdit/dèbit
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="pagament" value="transferencia" class="form-radio">
+                                        Transferència bancària
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="pagament" value="bizum" class="form-radio">
+                                        Bizum
+                                    </label>
+                                    <label class="form-radio-label">
+                                        <input type="radio" name="pagament" value="efectiu" class="form-radio">
+                                        Efectiu a l'entrada
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <fieldset class="form-fieldset-inline">
+                                <legend class="form-label">Descomptes aplicables</legend>
+                                <div class="form-checkbox-group">
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="descomptes[]" value="jove" class="form-checkbox">
+                                        Jove (–25 anys) − 15%
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="descomptes[]" value="senior" class="form-checkbox">
+                                        Sènior (+65 anys) − 15%
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="descomptes[]" value="soci" class="form-checkbox">
+                                        Soci/a de l'Associació − 20%
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="descomptes[]" value="grup" class="form-checkbox">
+                                        Inscripció en grup (+3 persones) − 10%
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="codi-promoci" class="form-label">Codi promocional</label>
+                            <input type="text" id="codi-promoci" name="codi_promoci" class="form-control"
+                                placeholder="TERRISSA2026" pattern="[A-Z0-9]{5,20}" maxlength="20" autocomplete="off"
+                                spellcheck="false">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="num-factura" class="form-label">Necessites factura?</label>
+                            <select id="num-factura" name="factura" class="form-control form-select">
+                                <option value="no">No, no necessito factura</option>
+                                <option value="particular">Sí, a nom particular</option>
+                                <option value="empresa">Sí, a nom d'empresa</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <label for="nif-factura" class="form-label">NIF / CIF (si necessites factura)</label>
+                            <input type="text" id="nif-factura" name="nif_factura" class="form-control"
+                                placeholder="12345678A" pattern="[A-Z0-9]{8,10}" maxlength="10" autocomplete="off"
+                                spellcheck="false">
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <!-- ===== 7. COM ENS HAS CONEGUT ===== -->
+                <fieldset class="form-section" id="seccio-referral">
+                    <legend class="form-section__legend">
+                        <span class="form-section__num">7</span>
+                        Com has conegut les jornades?
+                    </legend>
+
+                    <div class="form-grid">
+
+                        <div class="form-group form-group--full">
+                            <fieldset class="form-fieldset-block">
+                                <legend class="form-label">Mitjà de difusió (pots marcar més d'un)</legend>
+                                <div class="form-checkbox-group">
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="difusio[]" value="xarxes" class="form-checkbox">
+                                        Xarxes socials (Instagram, Facebook...)
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="difusio[]" value="amic" class="form-checkbox">
+                                        Recomanació d'un amic o familiar
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="difusio[]" value="web" class="form-checkbox">
+                                        Web de l'Ajuntament o associació
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="difusio[]" value="cartell" class="form-checkbox">
+                                        Cartells i flyers
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="difusio[]" value="premsa" class="form-checkbox">
+                                        Premsa local
+                                    </label>
+                                    <label class="form-checkbox-label form-checkbox-label--inline">
+                                        <input type="checkbox" name="difusio[]" value="anterior" class="form-checkbox">
+                                        Ja hi havia assistit altres anys
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <label for="comentaris" class="form-label">Comentaris o suggeriments</label>
+                            <textarea id="comentaris" name="comentaris" class="form-control form-textarea" rows="4"
+                                maxlength="1000"
+                                placeholder="Tens alguna pregunta o vols afegir alguna informació addicional?"></textarea>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <!-- ===== 8. CONSENTIMENTS ===== -->
+                <fieldset class="form-section form-section--consents" id="seccio-consents">
+                    <legend class="form-section__legend">
+                        <span class="form-section__num">8</span>
+                        Consentiments i condicions
+                    </legend>
+
+                    <div class="form-consents">
+
+                        <label class="form-consent-label">
+                            <input type="checkbox" name="accept_condicions" value="si" class="form-checkbox" required
+                                aria-required="true">
+                            <span>
+                                He llegit i accepto les
+                                <a href="/condicions" target="_blank" rel="noopener">condicions generals
+                                    d'inscripció</a>
+                                i la
+                                <a href="/politica-cancelacio" target="_blank" rel="noopener">política de
+                                    cancel·lació</a>.
+                                <strong>(obligatori)</strong>
+                            </span>
+                        </label>
+
+                        <label class="form-consent-label">
+                            <input type="checkbox" name="accept_lopd" value="si" class="form-checkbox" required
+                                aria-required="true">
+                            <span>
+                                He llegit i accepto la
+                                <a href="/privacitat" target="_blank" rel="noopener">política de privacitat</a>
+                                i el tractament de les meves dades personals d'acord amb el RGPD.
+                                <strong>(obligatori)</strong>
+                            </span>
+                        </label>
+
+                        <label class="form-consent-label">
+                            <input type="checkbox" name="accept_imatge" value="si" class="form-checkbox">
+                            <span>
+                                Autoritzo l'ús de la meva imatge en fotografies i vídeos de l'esdeveniment per a fins
+                                comunicatius sense ànim de lucre. (opcional)
+                            </span>
+                        </label>
+
+                        <label class="form-consent-label">
+                            <input type="checkbox" name="newsletter" value="si" class="form-checkbox">
+                            <span>
+                                Vull rebre informació sobre futures edicions i activitats relacionades amb la terrissa a
+                                Sant Fost. (opcional)
+                            </span>
+                        </label>
+
+                    </div>
+                </fieldset>
+
+                <!-- ===== ACCIONS ===== -->
+                <div class="form-actions">
+                    <div class="form-actions__info">
+                        <p>En enviar el formulari, rebràs un correu de confirmació a l'adreça indicada.</p>
+                    </div>
+                    <div class="form-actions__buttons">
+                        <button type="reset" class="btn btn--secondary">
+                            Esborrar formulari
+                        </button>
+                        <button type="button" class="btn btn--outline" id="btn-previsualitzar">
+                            Previsualitzar inscripció
+                        </button>
+                        <button type="submit" class="btn btn--primary" id="btn-enviar">
+                            Enviar inscripció
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <include src="./views/footer.html"></include>
+</body>
+
+</html>
