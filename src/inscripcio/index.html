@@ -14,24 +14,24 @@
 
     <main class="flex-grow-1">
 
-        <section class="container-fluid inscripcio-hero">
+        <section class="container-fluid inscripcio-hero mb-4">
             <div class="inscripcio-hero__inner">
-                <h1 class="inscripcio-hero__title">Inscripció a les Jornades de Terrissa</h1>
-                <p class="inscripcio-hero__subtitle">Sant Fost de Campsentelles · Edició 2026</p>
-                <p class="inscripcio-hero__dates">Del 15 al 17 de maig de 2026</p>
+                <h1 class="inscripcio-hero__title text-tertiary my-4 p-4">Inscripció a les Jornades de Terrissa</h1>
+                <p class="inscripcio-hero__subtitle p-2">Sant Fost de Campsentelles · Edició 2026</p>
+                <p class="inscripcio-hero__dates my-3 py-2 px-4">Del 15 al 17 de maig de 2026</p>
             </div>
         </section>
 
         <section class="inscripcio-container container">
 
-            <div class="inscripcio-info p-4">
+            <div class="inscripcio-info my-4 p-4">
                 <p>Emplena el formulari per reservar la teva plaça. Les places són limitades i s'assignen per ordre
                     d'inscripció.</p>
                 <meter class="inscripcio-info__meter" id="places-meter" min="0" max="60" low="20" high="45" optimum="10"
-                    value="38">
-                    38 de 60 places ocupades
+                    value="10">
+                    10 de 60 places ocupades
                 </meter>
-                <label for="places-meter" class="inscripcio-info__meter-label">Places disponibles: <output
+                <label for="places-meter" class="inscripcio-info__meter-label my-4">Places disponibles: <output
                         id="places-output">22</output> de 60</label>
                 <progress class="inscripcio-info__progress" id="inscripcio-progress" max="100" value="63">63%</progress>
             </div>
@@ -43,7 +43,7 @@
                 <input type="hidden" name="csrf_token" value="abc123xyz">
 
                 <!-- ===== 1. DADES PERSONALS ===== -->
-                <fieldset class="form-section" id="seccio-personal">
+                <fieldset class="form-section p-4" id="seccio-personal">
                     <legend class="form-section__legend">
                         <span class="form-section__num">1</span>
                         Dades personals
@@ -91,7 +91,7 @@
                             <label for="data-naixement" class="form-label form-label--required">Data de
                                 naixement</label>
                             <input type="date" id="data-naixement" name="data_naixement" class="form-control" required
-                                min="1924-01-01" max="2010-12-31" autocomplete="bday">
+                                min="1900-01-01" max="2012-12-31" autocomplete="bday">
                         </div>
 
                         <div class="form-group form-group--full">
@@ -108,14 +108,15 @@
                             <datalist id="poblacions-suggerides">
                                 <option value="Sant Fost de Campsentelles">
                                 <option value="Mollet del Vallès">
+                                <option value="Martorelles">
+                                <option value="Santa Maria de Martorelles">
+                                <option value="Parets del Vallès">
+                                <option value="Tiana">
                                 <option value="Montmeló">
                                 <option value="Santa Perpètua de Mogoda">
                                 <option value="La Llagosta">
                                 <option value="Granollers">
-                                <option value="Barcelona">
-                                <option value="Badalona">
-                                <option value="Sabadell">
-                                <option value="Terrassa">
+
                             </datalist>
                         </div>
 
@@ -153,23 +154,39 @@
                             <fieldset class="form-fieldset-inline">
                                 <legend class="form-label">Gènere</legend>
                                 <div class="form-radio-group">
-                                    <label class="form-radio-label">
-                                        <input type="radio" name="genere" value="dona" class="form-radio">
-                                        Dona
-                                    </label>
-                                    <label class="form-radio-label">
-                                        <input type="radio" name="genere" value="home" class="form-radio">
-                                        Home
-                                    </label>
-                                    <label class="form-radio-label">
-                                        <input type="radio" name="genere" value="no-binari" class="form-radio">
-                                        No binari
-                                    </label>
-                                    <label class="form-radio-label">
-                                        <input type="radio" name="genere" value="prefereixo-no-dir" class="form-radio"
-                                            checked>
-                                        Prefereixo no dir-ho
-                                    </label>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioDefault"
+                                            id="radioDefault1">
+                                        <label class="form-check-label text-neutral" for="radioDefault1">
+                                            Home
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioDefault"
+                                            id="radioDefault1">
+                                        <label class="form-check-label text-neutral" for="radioDefault1">
+                                            Dona
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioDefault"
+                                            id="radioDefault1">
+                                        <label class="form-check-label text-neutral" for="radioDefault1">
+                                            No binari
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioDefault"
+                                            id="radioDefault1">
+                                        <label class="form-check-label text-neutral" for="radioDefault1">
+                                            Prefereixo no dir-ho
+                                        </label>
+                                    </div>
+
                                 </div>
                             </fieldset>
                         </div>
@@ -178,7 +195,7 @@
                 </fieldset>
 
                 <!-- ===== 2. SELECCIÓ DE TALLERS ===== -->
-                <fieldset class="form-section" id="seccio-tallers">
+                <fieldset class="form-section p-4" id="seccio-tallers">
                     <legend class="form-section__legend">
                         <span class="form-section__num">2</span>
                         Selecció de tallers
@@ -297,7 +314,7 @@
                 </fieldset>
 
                 <!-- ===== 3. NIVELL I EXPERIÈNCIA ===== -->
-                <fieldset class="form-section" id="seccio-nivell">
+                <fieldset class="form-section p-4" id="seccio-nivell">
                     <legend class="form-section__legend">
                         <span class="form-section__num">3</span>
                         Nivell i experiència
@@ -385,7 +402,7 @@
                 </fieldset>
 
                 <!-- ===== 4. TRANSPORT I ALLOTJAMENT ===== -->
-                <fieldset class="form-section" id="seccio-logistica">
+                <fieldset class="form-section p-4" id="seccio-logistica">
                     <legend class="form-section__legend">
                         <span class="form-section__num">4</span>
                         Transport i allotjament
@@ -459,7 +476,7 @@
                 </fieldset>
 
                 <!-- ===== 5. ALIMENTACIÓ I NECESSITATS ===== -->
-                <fieldset class="form-section" id="seccio-alimentacio">
+                <fieldset class="form-section p-4" id="seccio-alimentacio">
                     <legend class="form-section__legend">
                         <span class="form-section__num">5</span>
                         Alimentació i necessitats especials
@@ -545,7 +562,7 @@
                 </fieldset>
 
                 <!-- ===== 6. PAGAMENT ===== -->
-                <fieldset class="form-section" id="seccio-pagament">
+                <fieldset class="form-section p-4" id="seccio-pagament">
                     <legend class="form-section__legend">
                         <span class="form-section__num">6</span>
                         Informació de pagament
@@ -628,7 +645,7 @@
                 </fieldset>
 
                 <!-- ===== 7. COM ENS HAS CONEGUT ===== -->
-                <fieldset class="form-section" id="seccio-referral">
+                <fieldset class="form-section p-4" id="seccio-referral">
                     <legend class="form-section__legend">
                         <span class="form-section__num">7</span>
                         Com has conegut les jornades?
@@ -679,7 +696,7 @@
                 </fieldset>
 
                 <!-- ===== 8. CONSENTIMENTS ===== -->
-                <fieldset class="form-section form-section--consents" id="seccio-consents">
+                <fieldset class="form-section form-section--consents p-4" id="seccio-consents">
                     <legend class="form-section__legend">
                         <span class="form-section__num">8</span>
                         Consentiments i condicions
@@ -754,7 +771,7 @@
         </section>
 
     </main>
-
+    <script type="module" src="/src/assets/scripts/main.js"></script>
     <include src="./views/footer.html"></include>
 </body>
 

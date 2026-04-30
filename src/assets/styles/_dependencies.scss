@@ -5,8 +5,21 @@
 
 // @import "some-node-module";
 // @import "@some-company/some-node-module";
-@import "variables";
-@import "bootstrap/scss/bootstrap";
+
+@layer bootstrap, component;
+
+@layer bootstrap {
+  @import "variables";
+  @import "bootstrap/scss/bootstrap";
+}
+
+@layer component {
+  @import "layouts/base";
+  @import "layouts/header";
+  @import "layouts/footer";
+  @import "layouts/home";
+}
+
 @import "npm:@fortawesome/fontawesome-free/css/all.css";
 
 //@import "npm:@fortawesome/fontawesome-free/css/fontawesome.css";

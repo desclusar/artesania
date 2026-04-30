@@ -23,3 +23,16 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
     link.removeAttribute('aria-current');
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const colorInput = document.querySelector('#color-preferit');
+  const page = document.querySelector('.page-inscripcio');
+
+  if (page && colorInput) {
+    colorInput.addEventListener('input', (e) => {
+      console.log('color seleccionat:', e.target.value);
+      page.style.setProperty('--gradient-start', e.target.value);
+    });
+  }
+});
+

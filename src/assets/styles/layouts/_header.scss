@@ -1,60 +1,67 @@
 @use "../variables" as *;
 
-.page-home {
-  .site-header {
-    .nav-item:first-child {
-      display: none;
-    }
-  }
-
-  .navbar {
-    background-color: transparent;
-
-    .navbar-toggler {
-      --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-      border-color: rgb(255 255 255 / 0.5);
-    }
-
-    .nav-link {
-      color: var(--color-white);
-      transition: color 0.3s ease;
-
-      &:hover {
-        color: var(--color-tertiary);
-      }
-
-      .active {
+@layer header {
+  .page-home {
+    .site-header {
+      .nav-item:first-child {
         display: none;
       }
     }
+
+    .navbar {
+      background-color: transparent;
+      color: text-white;
+
+      .navbar-brand {
+        color: var(--color-tertiary);
+      }
+
+      .navbar-toggler {
+        --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        border-color: rgb(255 255 255 / 0.5);
+      }
+
+      .nav-link {
+        color: var(--color-white);
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--color-tertiary);
+        }
+
+        .active {
+          display: none;
+        }
+      }
+    }
   }
-}
 
-:is(.page-ponents, .page-inscripcio, .page-article) {
-  padding-top: 3.125rem;
+  :is(.page-ponents, .page-inscripcio, .page-article) {
+    padding-top: 3.125rem;
 
-  .navbar {
-    background-color: var(--color-white);
+    .navbar {
+      background-color: var(--color-tertiary);
+    }
 
-    .navbar-brand {
+    .navbar .navbar-brand {
       color: var(--color-primary);
     }
   }
-}
 
-.navbar-nav .nav-link.active {
-  font-weight: 900;
-  color: var(--color-primary);
-  transition:
-    transform 0.3s ease,
-    color 0.3s ease;
-  transform: translateY(-4px);
-  border-bottom: 2px solid var(--color-primary);
-  text-shadow: 0 2px 4px var(--color-primary);
-}
+  .navbar-nav .nav-link.active {
+    font-weight: 900;
+    color: var(--color-primary);
+    transition:
+      transform 0.3s ease,
+      color 0.3s ease;
+    transform: translateY(-4px);
+    border-bottom: 2px solid var(--color-primary);
+    text-shadow: 0 2px 4px var(--color-primary);
+  }
 
-footer:has(.navbar) {
-  .navbar-nav {
-    background-color: transparent;
+  footer:has(.navbar) {
+    .navbar-nav {
+      background-color: transparent;
+    }
   }
 }

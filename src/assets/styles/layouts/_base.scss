@@ -12,26 +12,14 @@
   #RESET
 \*------------------------------------*/
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
+h1,
+h2 {
+  font-family: $font-family-serif;
+}
 /*------------------------------------*\
   #ELEMENTS GENÈRICS
 \*------------------------------------*/
-
-h1 {
-  font-family: $font-family-serif;
-}
-
-.text-justify {
-  text-align: justify;
-}

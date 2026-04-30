@@ -4,236 +4,234 @@
 @use "sass:map";
 @use "sass:color";
 
-/*------------------------------------*\
+@layer home {
+  /*------------------------------------*\
   #POSTER
 \*------------------------------------*/
 
-.poster-container {
-  background-image: image-set(
-    url("../images/poster768.webp") type("image/webp"),
-    url("../images/poster768.jpg") type("image/jpeg")
-  );
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  @media (min-width: 768px) {
-    height: clamp(30dvh, 80vw, 110dvh);
+  .poster-container {
     background-image: image-set(
-      url("../images/poster1200.webp") type("image/webp"),
-      url("../images/poster1200.jpg") type("image/jpeg")
+      url("../images/poster768.webp") type("image/webp"),
+      url("../images/poster768.jpg") type("image/jpeg")
     );
-  }
-
-  @media (min-width: 1200px) {
-    background-image: image-set(
-      url("../images/poster1920.webp") type("image/webp"),
-      url("../images/poster1920.jpg") type("image/jpeg")
-    );
-  }
-}
-
-.home-main {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 2rem 1rem;
-
-  h1 {
-    font-size: fn.fluid(1.5, 2.5);
-    padding-top: 4rem;
-    color: map.get($theme-colors, "tertiary");
-  }
-
-  h2 {
-    color: map.get($theme-colors, "primary");
-  }
-
-  h4 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: color.adjust(map.get($theme-colors, "primary"), $lightness: 25%);
-  }
-
-  h5 {
-    font-size: 0.8rem;
-    line-height: 1.2;
-    color: color.adjust(map.get($theme-colors, "primary"), $lightness: 40%);
-  }
-
-  p {
-    font-size: 0.8rem;
-    line-height: 1.2rem;
-    color: white;
-  }
-
-  .element-invisible {
-    display: none;
-  }
-
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    padding: 0;
-    list-style: none;
-
-    li {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      @include mix.make-container(taller-card);
-      padding: 10px;
-      line-height: 1.2;
-      background-color: color.change(
-        map.get($theme-colors, "neutral"),
-        $alpha: 0.5
-      );
-      border-radius: 4px;
-      overflow: hidden;
-      flex: 1 1 160px;
-      list-style-type: none;
-    }
-  }
-}
-
-@supports (display: grid) {
-  .home-main {
-    display: grid;
-    grid-template-columns: 1fr;
-
-    ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
-    }
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     @media (min-width: 768px) {
-      gap: 1vw;
-      grid-template-columns: repeat(7, 12vw);
-      grid-template-rows: repeat(7, 12vw);
-      height: 100dvh;
+      height: clamp(30dvh, 80vw, 110dvh);
+      background-image: image-set(
+        url("../images/poster1200.webp") type("image/webp"),
+        url("../images/poster1200.jpg") type("image/jpeg")
+      );
+    }
+
+    @media (min-width: 1200px) {
+      height: clamp(30dvh, 80vw, 110dvh);
+      background-image: image-set(
+        url("../images/poster1920.webp") type("image/webp"),
+        url("../images/poster1920.jpg") type("image/jpeg")
+      );
+    }
+  }
+
+  .home-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 1rem;
+
+    h1 {
+      font-size: fn.fluid(1.5, 2.5);
+      padding-top: 4rem;
+      color: map.get($theme-colors, "tertiary");
+    }
+
+    h2 {
+      color: map.get($theme-colors, "primary");
+    }
+
+    h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: color.adjust(map.get($theme-colors, "primary"), $lightness: 25%);
+    }
+
+    h5 {
+      font-size: 0.8rem;
+      line-height: 1.2;
+      color: color.adjust(map.get($theme-colors, "primary"), $lightness: 40%);
+    }
+
+    p {
+      font-size: 0.8rem;
+      line-height: 1.2rem;
+      color: white;
+    }
+
+    .element-invisible {
+      display: none;
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
       padding: 0;
+      list-style: none;
 
-      h1 {
-        grid-column: 6 / 8;
-        grid-row: 2 / 3;
-        padding-top: 0;
+      li {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        @include mix.make-container(taller-card);
+        padding: 10px;
+        line-height: 1.2;
+        background-color: color.change(
+          map.get($theme-colors, "neutral"),
+          $alpha: 0.5
+        );
+        border-radius: 4px;
+        overflow: hidden;
+        flex: 1 1 160px;
+        list-style-type: none;
       }
+    }
+  }
 
-      h2 {
-        align-self: end;
-        grid-column: 5 / 7;
-        grid-row: 1 / 2;
-        justify-self: center;
-      }
-
-      h4 {
-        font-size: clamp(0.5rem, 1.1vw, 0.9rem);
-      }
-
-      h5 {
-        font-size: clamp(0.45rem, 0.95vw, 0.8rem);
-      }
-
-      p {
-        font-size: clamp(0.4rem, 0.9vw, 0.8rem);
-        margin-bottom: 0.25em;
-      }
+  @supports (display: grid) {
+    .home-main {
+      display: grid;
+      grid-template-columns: 1fr;
 
       ul {
         display: grid;
-        gap: 0;
-        grid-template-columns: repeat(8, 12vw);
-        grid-template-rows: repeat(4, 12vw);
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+      }
 
-        li {
-          height: 100%;
+      @media (min-width: 768px) {
+        gap: 1vw;
+        grid-template-columns: repeat(7, 12vw);
+        grid-template-rows: repeat(7, 12vw);
+        height: 100dvh;
+        padding: 0;
+
+        h1 {
+          grid-column: 6 / 8;
+          grid-row: 2 / 3;
+          padding-top: 0;
+        }
+
+        h2 {
+          align-self: end;
+          grid-column: 5 / 7;
+          grid-row: 1 / 2;
+          justify-self: center;
+        }
+
+        h4 {
+          font-size: clamp(0.5rem, 1.1vw, 0.9rem);
         }
 
         h5 {
-          line-height: 1.2;
+          font-size: clamp(0.45rem, 0.95vw, 0.8rem);
         }
 
         p {
-          line-height: 1.2;
+          font-size: clamp(0.4rem, 0.9vw, 0.8rem);
+          margin-bottom: 0.25em;
         }
 
-        li:nth-child(1) {
-          grid-column: 2 / 3;
-          grid-row: 2 / 3;
-        }
+        ul {
+          display: grid;
+          gap: 0;
+          grid-template-columns: repeat(8, 12vw);
+          grid-template-rows: repeat(4, 12vw);
 
-        li:nth-child(2) {
-          grid-column: 4 / 5;
-          grid-row: 2 / 3;
-        }
+          li {
+            height: 100%;
+          }
 
-        li:nth-child(3) {
-          grid-column: 3 / 4;
-          grid-row: 3 / 4;
-        }
+          h5 {
+            line-height: 1.2;
+          }
 
-        li:nth-child(4) {
-          grid-column: 4 / 5;
-          grid-row: 4 / 5;
-          background-color: color.change(
-            map.get($theme-colors, "secondary"),
-            $alpha: 0.5
-          );
+          p {
+            line-height: 1.2;
+          }
+
+          li:nth-child(1) {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+          }
+
+          li:nth-child(2) {
+            grid-column: 4 / 5;
+            grid-row: 2 / 3;
+          }
+
+          li:nth-child(3) {
+            grid-column: 3 / 4;
+            grid-row: 3 / 4;
+          }
+
+          li:nth-child(4) {
+            grid-column: 6 / 8;
+            grid-row: 4 / 5;
+            background-color: color.change(
+              map.get($theme-colors, "secondary"),
+              $alpha: 0.7
+            );
+          }
         }
       }
     }
   }
-}
-/*------------------------------------*\
+  /*------------------------------------*\
   #PONENTS-CARDS
 \*------------------------------------*/
 
-.ponents-main {
-  padding-bottom: 9rem;
-}
+  .ponents-main {
+    padding-bottom: 9rem;
+  }
 
-.ponents-cards {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  margin-top: 2rem;
-  gap: 4rem;
-  @include mix.make-container(cards-grid);
+  .ponents-cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-top: 2rem;
+    gap: 4rem;
+    @include mix.make-container(cards-grid);
 
-  .card {
-    min-width: 18rem;
-    height: auto;
-    flex: 1 1 0;
-
-    .card-img-top {
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-    }
-
-    .card-picture {
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
+    .card {
+      min-width: 18rem;
+      height: auto;
+      flex: 1 1 0;
 
       .card-img-top {
-        width: 100%;
-        height: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
+      .card-picture {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+
+        .card-img-top {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .card-title {
+        font-family: $font-family-serif;
       }
     }
-
-    .card-title {
-      font-family: $font-family-serif;
-    }
   }
-}
 
-/*------------------------------------*\
+  /*------------------------------------*\
   #ARTICLE
 \*------------------------------------*/
-
-@layer article-layout, article-typography, article-components;
-
-@layer article-layout {
   .article {
     padding-bottom: 9rem;
   }
@@ -249,10 +247,10 @@
     background-position: center;
     background-repeat: no-repeat;
   }
-}
 
-@layer article-typography {
   .first-p {
+    text-align: justify;
+
     @supports (initial-letter: 4) or (-webkit-initial-letter: 4) {
       &::first-letter {
         font-family: $font-family-serif;
@@ -290,9 +288,7 @@
     font-family: $font-family-serif;
     letter-spacing: -0.02em;
   }
-}
 
-@layer article-components {
   .activities {
     &__number {
       width: 2rem;
@@ -310,780 +306,782 @@
       font-size: 0.9rem;
     }
   }
-}
 
-/*------------------------------------*\
+  /*------------------------------------*\
   #CONTAINER QUERIES
 \*------------------------------------*/
 
-@container taller-card (width < 120px) {
-  p {
-    display: none;
+  @container taller-card (width < 120px) {
+    p {
+      display: none;
+    }
+
+    h5 {
+      display: none;
+    }
   }
 
-  h5 {
-    display: none;
-  }
-}
+  @container cards-grid (width < 400px) {
+    .card {
+      min-width: 100%;
+    }
 
-@container cards-grid (width < 400px) {
-  .card {
-    min-width: 100%;
+    .card-picture {
+      aspect-ratio: 16 / 9;
+    }
   }
 
-  .card-picture {
-    aspect-ratio: 16 / 9;
-  }
-}
-
-/*------------------------------------*\
+  /*------------------------------------*\
   #INSCRIPCIO
 \*------------------------------------*/
 
-@layer inscripcio-hero, inscripcio-form;
+  @layer inscripcio-hero, inscripcio-form;
 
-@layer inscripcio-hero {
-  .page-inscripcio {
-    background: linear-gradient(
-      to bottom,
-      color.adjust(map.get($theme-colors, "primary"), $lightness: -17%) 0%,
-      map.get($theme-colors, "primary") 100%
-    );
+  @layer inscripcio-hero {
+    .page-inscripcio {
+      //creo una CSS Custom property per a que l'usuari pugui canviarla
+      --gradient-start: rgb(128, 40, 6);
 
-    @supports (color: oklch(0 0 0)) {
       background: linear-gradient(
         to bottom,
-        oklch(42% 0.13 42) 0%,
-        oklch(60% 0.11 42) 100%
-      );
-    }
-  }
-
-  .inscripcio-hero {
-    @include mix.flex-center;
-    min-height: 28vh;
-    min-height: 28dvh;
-
-    padding: 4vh 6vw;
-    padding: 4dvh 6dvw;
-
-    background:
-      linear-gradient(
-        to bottom,
-        transparent 50%,
-        color.adjust(map.get($theme-colors, "primary"), $lightness: -17%) 100%
-      ),
-      linear-gradient(
-        160deg,
-        rgba(
-            color.adjust(map.get($theme-colors, "primary"), $lightness: -17%),
-            0.52
-          )
-          0%,
-        rgba(
-            color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
-            0.78
-          )
-          100%
-      ),
-      url("../images/card-ritual.jpg") center / cover no-repeat;
-
-    @supports (color: oklch(0 0 0)) {
-      background:
-        linear-gradient(to bottom, transparent 50%, oklch(42% 0.13 42) 100%),
-        linear-gradient(
-          160deg,
-          oklch(42% 0.13 42 / 0.52) 0%,
-          oklch(8% 0.04 40 / 0.8) 100%
-        ),
-        url("../images/card-ritual.jpg") center / cover no-repeat;
-    }
-
-    &__inner {
-      max-width: min(90vw, 800px);
-      max-width: min(90svw, 800px);
-      text-align: center;
-    }
-
-    &__title {
-      font-size: clamp(1.8rem, 4vw, 3.5rem);
-      font-size: clamp(1.8rem, 4dvw, 3.5rem);
-      color: white;
-      margin-bottom: 0.5em;
-    }
-
-    &__subtitle {
-      font-size: clamp(1rem, 2vw, 1.5rem);
-      font-size: clamp(1rem, 2dvw, 1.5rem);
-      font-style: italic;
-
-      color: color.adjust(map.get($theme-colors, "primary"), $lightness: 22%);
-      color: oklch(88% 0.05 60);
-      margin-bottom: 0.25em;
-    }
-
-    &__dates {
-      display: inline-block;
-      margin: 2rem 0;
-      padding: 0.4em 1.2em;
-
-      font-size: clamp(0.85rem, 1.5vw, 1.1rem);
-      font-size: clamp(0.85rem, 1.5dvw, 1.1rem);
-
-      color: var(--color-crema);
-
-      background: rgba(
-        color.adjust(map.get($theme-colors, "primary"), $lightness: 5%),
-        0.3
-      );
-      background: oklch(75% 0.1 47 / 0.3);
-
-      border: 1px solid
-        rgba(
-          color.adjust(map.get($theme-colors, "primary"), $lightness: 15%),
-          0.5
-        );
-      border: 1px solid oklch(80% 0.06 55 / 0.5);
-      border-radius: 2em;
-    }
-  }
-
-  .inscripcio-container {
-    max-width: min(92vw, 1100px);
-    max-width: min(92lvw, 1100px);
-    margin: 0 auto;
-
-    padding: clamp(1.5rem, 4vh, 4rem) clamp(1rem, 4vw, 2.5rem);
-    padding: clamp(1.5rem, 4dvh, 4rem) clamp(1rem, 4dvw, 2.5rem);
-  }
-
-  .inscripcio-info {
-    display: grid;
-    gap: 0.75rem;
-
-    padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 3vw, 1.5rem);
-    padding: clamp(1rem, 3dvh, 1.5rem) clamp(1rem, 3dvw, 1.5rem);
-    background: var(--color-tertiary);
-    border-radius: 0.5rem;
-    border-left: 4px solid var(--color-terra);
-
-    margin-bottom: clamp(1.5rem, 4vh, 3rem);
-    margin-bottom: clamp(1.5rem, 4dvh, 3rem);
-
-    p {
-      margin: 0;
-      color: var(--color-gris-fosc);
-    }
-
-    &__meter {
-      width: 100%;
-      height: 1.25rem;
-      border-radius: 0.5rem;
-      overflow: hidden;
-
-      &::-webkit-meter-bar {
-        background: color.adjust(
-          map.get($theme-colors, "tertiary"),
-          $lightness: -5%
-        );
-        background: oklab(90% -0.005 0.005);
-        border-radius: 0.5rem;
-      }
-
-      &::-webkit-meter-optimum-value {
-        background: var(--color-success);
-      }
-
-      &::-webkit-meter-suboptimum-value {
-        background: var(--color-warning);
-      }
-
-      &::-webkit-meter-even-less-good-value {
-        background: var(--color-error);
-      }
-    }
-
-    &__meter-label {
-      font-size: 0.85rem;
-      color: var(--color-gris-mig);
-    }
-
-    &__progress {
-      width: 100%;
-      height: 0.5rem;
-      border-radius: 0.25rem;
-      overflow: hidden;
-      appearance: none;
-
-      &::-webkit-progress-bar {
-        background: color.adjust(
-          map.get($theme-colors, "tertiary"),
-          $lightness: -8%
-        );
-        background: oklab(88% -0.003 0.003);
-        border-radius: 0.25rem;
-      }
-
-      &::-webkit-progress-value {
-        background: linear-gradient(
-          90deg,
-          var(--color-primary) 0%,
-          var(--color-secondary) 100%
-        );
-        border-radius: 0.25rem;
-      }
-    }
-  }
-
-  .inscripcio-form {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1.5rem, 3vh, 2.5rem);
-    gap: clamp(1.5rem, 3dvh, 2.5rem);
-  }
-} // inscripcio-hero
-
-@layer inscripcio-form {
-  .form-section {
-    @include mix.make-container(form-section);
-
-    padding: 2rem;
-
-    // padding: clamp(1.25rem, 3vw, 2rem);
-    // padding: clamp(1.25rem, 3dvw, 2rem);
-
-    background: var(--color-tertiary);
-    border: 1px solid
-      rgba(
-        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
-        0.2
-      );
-    border: 1px solid oklch(96% 0.015 85 / 0.2);
-    border-radius: 0.75rem;
-    transition: box-shadow 0.2s ease;
-
-    box-shadow: 0 2px 10px
-      rgba(
-        color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
-        0.3
-      );
-    box-shadow: 0 2px 10px oklch(10% 0.04 40 / 0.3);
-
-    &:focus-within {
-      box-shadow: 0 4px 24px
-        rgba(
-          color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
-          0.45
-        );
-      box-shadow: 0 4px 24px oklch(8% 0.04 40 / 0.45);
-      border-color: rgba(
-        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
-        0.5
-      );
-      border-color: oklch(96% 0.015 85 / 0.5);
-    }
-
-    &--consents {
-      background: linear-gradient(
-        135deg,
-        color.adjust(map.get($theme-colors, "tertiary"), $lightness: 2%) 0%,
-        color.adjust(map.get($theme-colors, "secondary"), $lightness: 42%) 100%
+        var(--gradient-start) 0%,
+        map.get($theme-colors, "primary") 100%
       );
 
       @supports (color: oklch(0 0 0)) {
         background: linear-gradient(
-          135deg,
-          oklch(97% 0.015 80) 0%,
-          oklch(96% 0.012 220) 100%
+          to bottom,
+          var(--gradient-start) 0%,
+          oklch(60% 0.11 42) 100%
         );
       }
     }
 
-    &__legend {
-      display: flex;
-      align-items: center;
-      gap: 0.6em;
-      padding: 0 0.75em;
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      font-size: clamp(1rem, 2svw, 1.25rem);
-      font-weight: 700;
-      color: var(--color-primary);
-    }
+    .inscripcio-hero {
+      @include mix.flex-center;
+      min-height: 28vh;
+      min-height: 28dvh;
 
-    &__num {
-      display: inline-flex;
-      flex-shrink: 0;
-      align-items: center;
-      justify-content: center;
-      width: 1.8em;
-      height: 1.8em;
-      font-size: 0.85em;
-      font-weight: 800;
-      color: var(--color-tertiary);
-      background: var(--color-primary);
-      border-radius: 50%;
-    }
+      padding: 4vh 6vw;
+      padding: 4dvh 6dvw;
 
-    &__desc {
-      font-size: 0.9rem;
-      color: var(--color-tertiary);
-      margin-bottom: 1rem;
-    }
+      background:
+        linear-gradient(
+          to bottom,
+          transparent 50%,
+          color.adjust(map.get($theme-colors, "primary"), $lightness: -17%) 100%
+        ),
+        linear-gradient(
+          160deg,
+          rgba(
+              color.adjust(map.get($theme-colors, "primary"), $lightness: -17%),
+              0.52
+            )
+            0%,
+          rgba(
+              color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
+              0.78
+            )
+            100%
+        ),
+        url("../images/card-ritual.jpg") center / cover no-repeat;
 
-    .form-label {
-      color: var(--color-neutral);
+      @supports (color: oklch(0 0 0)) {
+        background:
+          linear-gradient(to bottom, transparent 50%, oklch(42% 0.13 42) 100%),
+          linear-gradient(
+            160deg,
+            oklch(42% 0.13 42 / 0.52) 0%,
+            oklch(8% 0.04 40 / 0.8) 100%
+          ),
+          url("../images/card-ritual.jpg") center / cover no-repeat;
+      }
 
-      &--required::after {
-        color: var(--color-vermell-raku);
+      &__inner {
+        max-width: min(90vw, 800px);
+        max-width: min(90svw, 800px);
+        text-align: center;
+      }
+
+      &__title {
+        font-size: clamp(1.8rem, 4vw, 3.5rem);
+        font-size: clamp(1.8rem, 4dvw, 3.5rem);
+        color: white;
+        margin-bottom: 0.5em;
+      }
+
+      &__subtitle {
+        font-size: clamp(1rem, 2vw, 1.5rem);
+        font-size: clamp(1rem, 2dvw, 1.5rem);
+        font-style: italic;
+
+        color: color.adjust(map.get($theme-colors, "primary"), $lightness: 22%);
+        color: oklch(88% 0.05 60);
+        margin-bottom: 0.25em;
+      }
+
+      &__dates {
+        display: inline-block;
+        margin: 2rem 0;
+        padding: 0.4em 1.2em;
+
+        font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+        font-size: clamp(0.85rem, 1.5dvw, 1.1rem);
+
+        color: var(--color-crema);
+
+        background: rgba(
+          color.adjust(map.get($theme-colors, "primary"), $lightness: 5%),
+          0.3
+        );
+        background: oklch(75% 0.1 47 / 0.3);
+
+        border: 1px solid
+          rgba(
+            color.adjust(map.get($theme-colors, "primary"), $lightness: 15%),
+            0.5
+          );
+        border: 1px solid oklch(80% 0.06 55 / 0.5);
+        border-radius: 2em;
       }
     }
 
-    .form-hint,
-    .form-range-labels,
-    .form-color-label {
-      color: var(--color-secondary);
+    .inscripcio-container {
+      max-width: min(92vw, 1100px);
+      max-width: min(92lvw, 1100px);
+      margin: 0 auto;
+
+      padding: clamp(1.5rem, 4vh, 4rem) clamp(1rem, 4vw, 2.5rem);
+      padding: clamp(1.5rem, 4dvh, 4rem) clamp(1rem, 4dvw, 2.5rem);
     }
 
-    .form-radio-label,
-    .form-checkbox-label {
-      color: var(--color-neutral);
+    .inscripcio-info {
+      display: grid;
+      //gap: 0.75rem;
 
-      &:hover input:not(:disabled) ~ * {
+      padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 3vw, 1.5rem);
+      padding: clamp(1rem, 3dvh, 1.5rem) clamp(1rem, 3dvw, 1.5rem);
+      background: var(--color-tertiary);
+      border-radius: 0.5rem;
+
+      margin-bottom: clamp(1.5rem, 4vh, 3rem);
+      margin-bottom: clamp(1.5rem, 4dvh, 3rem);
+
+      p {
+        margin: 0;
+        color: var(--color-gris-fosc);
+      }
+
+      &__meter {
+        width: 100%;
+        height: 1.25rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
+
+        &::-webkit-meter-bar {
+          background: color.adjust(
+            map.get($theme-colors, "tertiary"),
+            $lightness: -5%
+          );
+          background: oklab(90% -0.005 0.005);
+          border-radius: 0.5rem;
+        }
+
+        &::-webkit-meter-optimum-value {
+          background: var(--color-success);
+        }
+
+        &::-webkit-meter-suboptimum-value {
+          background: var(--color-warning);
+        }
+
+        &::-webkit-meter-even-less-good-value {
+          background: var(--color-error);
+        }
+      }
+
+      &__meter-label {
+        font-size: 0.85rem;
+        color: var(--color-gris-mig);
+      }
+
+      &__progress {
+        width: 100%;
+        height: 0.5rem;
+        border-radius: 0.25rem;
+        overflow: hidden;
+        appearance: none;
+
+        &::-webkit-progress-bar {
+          background: color.adjust(
+            map.get($theme-colors, "tertiary"),
+            $lightness: -8%
+          );
+          background: oklab(88% -0.003 0.003);
+          border-radius: 0.25rem;
+        }
+
+        &::-webkit-progress-value {
+          background: linear-gradient(
+            90deg,
+            var(--color-primary) 0%,
+            var(--color-secondary) 100%
+          );
+          border-radius: 0.25rem;
+        }
+      }
+    }
+
+    .inscripcio-form {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1.5rem, 3vh, 2.5rem);
+      gap: clamp(1.5rem, 3dvh, 2.5rem);
+    }
+  } // inscripcio-hero
+
+  @layer inscripcio-form {
+    .form-section {
+      @include mix.make-container(form-section);
+
+      padding: 2rem;
+
+      // padding: clamp(1.25rem, 3vw, 2rem);
+      // padding: clamp(1.25rem, 3dvw, 2rem);
+
+      background: var(--color-tertiary);
+      border: 1px solid
+        rgba(
+          color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
+          0.2
+        );
+      border: 1px solid oklch(96% 0.015 85 / 0.2);
+      border-radius: 0.75rem;
+      transition: box-shadow 0.2s ease;
+
+      box-shadow: 0 2px 10px
+        rgba(
+          color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
+          0.3
+        );
+      box-shadow: 0 2px 10px oklch(10% 0.04 40 / 0.3);
+
+      &:focus-within {
+        box-shadow: 0 4px 24px
+          rgba(
+            color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
+            0.45
+          );
+        box-shadow: 0 4px 24px oklch(8% 0.04 40 / 0.45);
+        border-color: rgba(
+          color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
+          0.5
+        );
+        border-color: oklch(96% 0.015 85 / 0.5);
+      }
+
+      &--consents {
+        background: linear-gradient(
+          135deg,
+          color.adjust(map.get($theme-colors, "tertiary"), $lightness: 2%) 0%,
+          color.adjust(map.get($theme-colors, "secondary"), $lightness: 42%)
+            100%
+        );
+
+        @supports (color: oklch(0 0 0)) {
+          background: linear-gradient(
+            135deg,
+            oklch(97% 0.015 80) 0%,
+            oklch(96% 0.012 220) 100%
+          );
+        }
+      }
+
+      &__legend {
+        display: flex;
+        align-items: center;
+        gap: 0.6em;
+        padding: 0 0.75em;
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        font-size: clamp(1rem, 2svw, 1.25rem);
+        font-weight: 700;
         color: var(--color-primary);
+      }
+
+      &__num {
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 1.8em;
+        height: 1.8em;
+        font-size: 0.85em;
+        font-weight: 800;
+        color: var(--color-tertiary);
+        background: var(--color-primary);
+        border-radius: 50%;
+      }
+
+      &__desc {
+        font-size: 0.9rem;
+        color: var(--color-tertiary);
+        margin-bottom: 1rem;
+      }
+
+      .form-label {
+        color: var(--color-neutral);
+
+        &--required::after {
+          color: var(--color-vermell-raku);
+        }
+      }
+
+      .form-hint,
+      .form-range-labels,
+      .form-color-label {
+        color: var(--color-secondary);
+      }
+
+      .form-fieldset-block {
+        border-color: rgba(
+          color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
+          0.25
+        );
+        border-color: oklch(96% 0.015 85 / 0.25);
+      }
+
+      output {
+        color: var(--color-tertiary);
+      }
+    }
+
+    .form-grid {
+      display: grid;
+
+      gap: clamp(1rem, 2vh, 1.5rem) clamp(0.75rem, 2vw, 1.25rem);
+      gap: clamp(1rem, 2dvh, 1.5rem) clamp(0.75rem, 2dvw, 1.25rem);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+
+      margin-top: 1rem;
+    }
+
+    @container form-section (width < 420px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-section__legend {
+        font-size: 1rem;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+
+      &--full {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .form-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-gris-fosc);
+
+      &--required {
+        &::after {
+          font-weight: 700;
+          color: var(--color-vermell-raku);
+          content: " *";
+        }
+      }
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.6em 0.85em;
+
+      font-family: inherit;
+
+      font-size: clamp(0.875rem, 1.5vw, 1rem);
+      font-size: clamp(0.875rem, 1.5svw, 1rem);
+      line-height: 1.5;
+      color: var(--color-gris-fosc);
+      background: var(--color-blanc);
+
+      border: 1.5px solid
+        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -20%);
+      border: 1.5px solid oklch(78% 0.03 50);
+      border-radius: 0.45rem;
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background-color 0.15s ease;
+      appearance: none;
+
+      &::placeholder {
+        color: color.adjust(map.get($theme-colors, "neutral"), $lightness: 24%);
+        color: oklab(72% -0.002 0.003);
+      }
+
+      &:hover {
+        border-color: color.adjust(
+          map.get($theme-colors, "primary"),
+          $lightness: -10%
+        );
+        border-color: oklch(65% 0.06 47);
+      }
+
+      &:focus {
+        outline: none;
+
+        border-color: color.adjust(
+          map.get($theme-colors, "primary"),
+          $lightness: -14%
+        );
+        border-color: oklch(52% 0.1 47);
+
+        box-shadow:
+          0 0 0 3px
+            rgba(
+              color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
+              0.18
+            ),
+          0 1px 3px
+            rgba(
+              color.adjust(map.get($theme-colors, "primary"), $lightness: -30%),
+              0.1
+            );
+        box-shadow:
+          0 0 0 3px oklch(52% 0.1 47 / 0.18),
+          0 1px 3px oklch(30% 0.08 45 / 0.1);
+
+        background: color.adjust(
+          map.get($theme-colors, "tertiary"),
+          $lightness: 5%
+        );
+        background: oklch(99.5% 0.005 80);
+      }
+
+      &:disabled,
+      &[readonly] {
+        color: var(--color-gris-mig);
+        background: color.adjust(
+          map.get($theme-colors, "tertiary"),
+          $lightness: -8%
+        );
+        background: oklab(94% -0.003 0.003);
+        cursor: not-allowed;
+        border-color: color.adjust(
+          map.get($theme-colors, "tertiary"),
+          $lightness: -15%
+        );
+        border-color: oklab(85% -0.002 0.002);
+      }
+
+      &:invalid:not(:placeholder-shown) {
+        border-color: var(--color-error);
+        box-shadow: 0 0 0 3px
+          rgba(
+            color.adjust(map.get($theme-colors, "primary"), $lightness: -20%),
+            0.15
+          );
+        box-shadow: 0 0 0 3px lab(45% 55 30 / 0.15);
+      }
+
+      &:valid:not(:placeholder-shown) {
+        border-color: var(--color-success);
+      }
+    }
+
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238c5a3c' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-position: right 0.85em center;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      padding-right: 2.5em;
+
+      &[multiple] {
+        background-image: none;
+        padding-right: 0.85em;
+      }
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 6rem;
+      min-height: max(6rem, 10dvh);
+
+      @supports not (height: 1dvh) {
+        min-height: 6rem;
+      }
+    }
+
+    .form-range {
+      width: 100%;
+      height: 0.4rem;
+
+      background: color.adjust(
+        map.get($theme-colors, "tertiary"),
+        $lightness: -8%
+      );
+      background: oklab(88% -0.003 0.003);
+
+      border-radius: 1rem;
+      cursor: pointer;
+      appearance: none;
+
+      &::-webkit-slider-thumb {
+        width: 1.3rem;
+        height: 1.3rem;
+        background: var(--color-secondary);
+        border: 2px solid var(--color-blanc);
+        border-radius: 50%;
+        transition:
+          background 0.15s,
+          transform 0.15s;
+        appearance: none;
+        box-shadow: 0 1px 4px
+          rgba(
+            color.adjust(map.get($theme-colors, "primary"), $lightness: -30%),
+            0.35
+          );
+        box-shadow: 0 1px 4px oklch(30% 0.08 45 / 0.35);
+
+        &:hover {
+          background: var(--color-terra-fosc);
+          transform: scale(1.15);
+        }
+      }
+
+      &::-moz-range-thumb {
+        width: 1.3rem;
+        height: 1.3rem;
+        background: var(--color-terra);
+        border: 2px solid var(--color-blanc);
+        border-radius: 50%;
+        transition:
+          background 0.15s,
+          transform 0.15s;
+        cursor: pointer;
+        box-shadow: 0 1px 4px oklch(30% 0.08 45 / 0.35);
+
+        &:hover {
+          background: var(--color-terra-fosc);
+          transform: scale(1.15);
+        }
+      }
+
+      &:focus {
+        outline: none;
+
+        &::-webkit-slider-thumb {
+          box-shadow: 0 0 0 4px
+            rgba(
+              color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
+              0.25
+            );
+          box-shadow: 0 0 0 4px oklch(52% 0.1 47 / 0.25);
+        }
+      }
+    }
+
+    .form-range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--color-gris-mig);
+      margin-top: 0.25rem;
+    }
+
+    .form-file {
+      font-size: 0.875rem;
+      color: var(--color-gris-fosc);
+      cursor: pointer;
+
+      &::file-selector-button {
+        padding: 0.45em 1em;
+        font-size: 0.875rem;
+        color: var(--color-blanc);
+        background: var(--color-terra);
+        border: none;
+        border-radius: 0.35rem;
+        transition: background 0.15s;
+        cursor: pointer;
+        margin-right: 0.75em;
+
+        &:hover {
+          background: var(--color-terra-fosc);
+        }
+      }
+    }
+
+    .form-color-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .form-color {
+      width: 3rem;
+      height: 3rem;
+      padding: 0.15rem;
+      background: none;
+      border: 2px solid
+        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -20%);
+      border: 2px solid oklch(78% 0.03 50);
+      border-radius: 50%;
+      transition:
+        transform 0.15s,
+        box-shadow 0.15s;
+      cursor: pointer;
+
+      &::-webkit-color-swatch-wrapper {
+        padding: 0;
+        border-radius: 50%;
+      }
+
+      &::-webkit-color-swatch {
+        border: none;
+        border-radius: 50%;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px
+          rgba(
+            color.adjust(map.get($theme-colors, "primary"), $lightness: -20%),
+            0.3
+          );
+        box-shadow: 0 2px 8px oklch(40% 0.08 45 / 0.3);
+      }
+    }
+
+    .form-color-label {
+      font-size: 0.85rem;
+      color: var(--color-gris-mig);
+    }
+
+    .form-fieldset-inline {
+      margin: 0;
+      padding: 0;
+      border: none;
+
+      legend {
+        margin-bottom: 0.5rem;
       }
     }
 
     .form-fieldset-block {
-      border-color: rgba(
-        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
-        0.25
-      );
-      border-color: oklch(96% 0.015 85 / 0.25);
-    }
+      padding: 1rem;
+      border: 1px dashed
+        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -18%);
+      border: 1px dashed oklch(80% 0.04 50);
+      border-radius: 0.5rem;
 
-    output {
-      color: var(--color-tertiary);
-    }
-  }
-
-  .form-grid {
-    display: grid;
-
-    gap: clamp(1rem, 2vh, 1.5rem) clamp(0.75rem, 2vw, 1.25rem);
-    gap: clamp(1rem, 2dvh, 1.5rem) clamp(0.75rem, 2dvw, 1.25rem);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-
-    margin-top: 1rem;
-  }
-
-  @container form-section (width < 420px) {
-    .form-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .form-section__legend {
-      font-size: 1rem;
-    }
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-
-    &--full {
-      grid-column: 1 / -1;
-    }
-  }
-
-  .form-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--color-gris-fosc);
-
-    &--required {
-      &::after {
-        font-weight: 700;
-        color: var(--color-vermell-raku);
-        content: " *";
+      legend {
+        padding: 0 0.5em;
+        margin-bottom: 0.5rem;
       }
     }
-  }
 
-  .form-control {
-    width: 100%;
-    padding: 0.6em 0.85em;
+    .form-radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
 
-    font-family: inherit;
-
-    font-size: clamp(0.875rem, 1.5vw, 1rem);
-    font-size: clamp(0.875rem, 1.5svw, 1rem);
-    line-height: 1.5;
-    color: var(--color-gris-fosc);
-    background: var(--color-blanc);
-
-    border: 1.5px solid
-      color.adjust(map.get($theme-colors, "tertiary"), $lightness: -20%);
-    border: 1.5px solid oklch(78% 0.03 50);
-    border-radius: 0.45rem;
-    transition:
-      border-color 0.15s ease,
-      box-shadow 0.15s ease,
-      background-color 0.15s ease;
-    appearance: none;
-
-    &::placeholder {
-      color: color.adjust(map.get($theme-colors, "neutral"), $lightness: 24%);
-      color: oklab(72% -0.002 0.003);
+      &--vertical {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
     }
 
-    &:hover {
-      border-color: color.adjust(
-        map.get($theme-colors, "primary"),
-        $lightness: -10%
-      );
-      border-color: oklch(65% 0.06 47);
+    .form-radio-label,
+    .form-checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: var(--color-gris-fosc);
+      cursor: pointer;
+
+      &:hover input:not(:disabled) ~ * {
+        color: var(--color-terra);
+      }
+
+      &--inline {
+        min-width: 200px;
+      }
     }
 
-    &:focus {
+    .form-radio,
+    .form-checkbox {
+      flex-shrink: 0;
+      width: 1.15rem;
+      height: 1.15rem;
+      background: var(--color-blanc);
+      border: 2px solid
+        color.adjust(map.get($theme-colors, "primary"), $lightness: -5%);
+      border: 2px solid oklch(70% 0.05 47);
+      cursor: pointer;
+      appearance: none;
+      margin-top: 0.1em;
+    }
+
+    .form-radio {
+      border-radius: 50%;
+
+      &:checked {
+        background: var(--color-terra);
+        border-color: var(--color-terra);
+        box-shadow: inset 0 0 0 3px var(--color-blanc);
+      }
+    }
+
+    .form-checkbox {
+      border-radius: 0.25rem;
+
+      &:checked {
+        background: var(--color-terra);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 8'%3E%3Cpath stroke='white' stroke-width='1.5' fill='none' d='M1 4l3 3 5-6'/%3E%3C/svg%3E");
+        background-size: 70%;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-color: var(--color-terra);
+      }
+
+      &:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+    }
+
+    .form-check-input:focus,
+    .form-checkbox:focus {
       outline: none;
-
+      box-shadow: 0 0 0 3px
+        rgba(
+          color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
+          0.25
+        );
+      box-shadow: 0 0 0 3px oklch(52% 0.1 47 / 0.25);
       border-color: color.adjust(
         map.get($theme-colors, "primary"),
         $lightness: -14%
       );
       border-color: oklch(52% 0.1 47);
-
-      box-shadow:
-        0 0 0 3px
-          rgba(
-            color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
-            0.18
-          ),
-        0 1px 3px
-          rgba(
-            color.adjust(map.get($theme-colors, "primary"), $lightness: -30%),
-            0.1
-          );
-      box-shadow:
-        0 0 0 3px oklch(52% 0.1 47 / 0.18),
-        0 1px 3px oklch(30% 0.08 45 / 0.1);
-
-      background: color.adjust(
-        map.get($theme-colors, "tertiary"),
-        $lightness: 5%
-      );
-      background: oklch(99.5% 0.005 80);
     }
 
-    &:disabled,
-    &[readonly] {
-      color: var(--color-gris-mig);
-      background: color.adjust(
-        map.get($theme-colors, "tertiary"),
-        $lightness: -8%
-      );
-      background: oklab(94% -0.003 0.003);
-      cursor: not-allowed;
-      border-color: color.adjust(
-        map.get($theme-colors, "tertiary"),
-        $lightness: -15%
-      );
-      border-color: oklab(85% -0.002 0.002);
-    }
-
-    &:invalid:not(:placeholder-shown) {
-      border-color: var(--color-error);
-      box-shadow: 0 0 0 3px
-        rgba(
-          color.adjust(map.get($theme-colors, "primary"), $lightness: -20%),
-          0.15
-        );
-      box-shadow: 0 0 0 3px lab(45% 55 30 / 0.15);
-    }
-
-    &:valid:not(:placeholder-shown) {
-      border-color: var(--color-success);
-    }
-  }
-
-  .form-select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238c5a3c' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-    background-position: right 0.85em center;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    padding-right: 2.5em;
-
-    &[multiple] {
-      background-image: none;
-      padding-right: 0.85em;
-    }
-  }
-
-  .form-textarea {
-    resize: vertical;
-    min-height: 6rem;
-    min-height: max(6rem, 10dvh);
-
-    @supports not (height: 1dvh) {
-      min-height: 6rem;
-    }
-  }
-
-  .form-range {
-    width: 100%;
-    height: 0.4rem;
-
-    background: color.adjust(
-      map.get($theme-colors, "tertiary"),
-      $lightness: -8%
-    );
-    background: oklab(88% -0.003 0.003);
-
-    border-radius: 1rem;
-    cursor: pointer;
-    appearance: none;
-
-    &::-webkit-slider-thumb {
-      width: 1.3rem;
-      height: 1.3rem;
-      background: var(--color-secondary);
-      border: 2px solid var(--color-blanc);
-      border-radius: 50%;
-      transition:
-        background 0.15s,
-        transform 0.15s;
-      appearance: none;
-      box-shadow: 0 1px 4px
-        rgba(
-          color.adjust(map.get($theme-colors, "primary"), $lightness: -30%),
-          0.35
-        );
-      box-shadow: 0 1px 4px oklch(30% 0.08 45 / 0.35);
-
-      &:hover {
-        background: var(--color-terra-fosc);
-        transform: scale(1.15);
+    //TODO aquesta part
+    .inscripcio-form {
+      .form-check-input:checked {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
       }
     }
-
-    &::-moz-range-thumb {
-      width: 1.3rem;
-      height: 1.3rem;
-      background: var(--color-terra);
-      border: 2px solid var(--color-blanc);
-      border-radius: 50%;
-      transition:
-        background 0.15s,
-        transform 0.15s;
-      cursor: pointer;
-      box-shadow: 0 1px 4px oklch(30% 0.08 45 / 0.35);
-
-      &:hover {
-        background: var(--color-terra-fosc);
-        transform: scale(1.15);
-      }
-    }
-
-    &:focus {
-      outline: none;
-
-      &::-webkit-slider-thumb {
-        box-shadow: 0 0 0 4px
-          rgba(
-            color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
-            0.25
-          );
-        box-shadow: 0 0 0 4px oklch(52% 0.1 47 / 0.25);
-      }
-    }
-  }
-
-  .form-range-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    color: var(--color-gris-mig);
-    margin-top: 0.25rem;
-  }
-
-  .form-file {
-    font-size: 0.875rem;
-    color: var(--color-gris-fosc);
-    cursor: pointer;
-
-    &::file-selector-button {
-      padding: 0.45em 1em;
-      font-size: 0.875rem;
-      color: var(--color-blanc);
-      background: var(--color-terra);
-      border: none;
-      border-radius: 0.35rem;
-      transition: background 0.15s;
-      cursor: pointer;
-      margin-right: 0.75em;
-
-      &:hover {
-        background: var(--color-terra-fosc);
-      }
-    }
-  }
-
-  .form-color-group {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .form-color {
-    width: 3rem;
-    height: 3rem;
-    padding: 0.15rem;
-    background: none;
-    border: 2px solid
-      color.adjust(map.get($theme-colors, "tertiary"), $lightness: -20%);
-    border: 2px solid oklch(78% 0.03 50);
-    border-radius: 50%;
-    transition:
-      transform 0.15s,
-      box-shadow 0.15s;
-    cursor: pointer;
-
-    &::-webkit-color-swatch-wrapper {
-      padding: 0;
-      border-radius: 50%;
-    }
-
-    &::-webkit-color-swatch {
-      border: none;
-      border-radius: 50%;
-    }
-
-    &:hover {
-      transform: scale(1.1);
-      box-shadow: 0 2px 8px
-        rgba(
-          color.adjust(map.get($theme-colors, "primary"), $lightness: -20%),
-          0.3
-        );
-      box-shadow: 0 2px 8px oklch(40% 0.08 45 / 0.3);
-    }
-  }
-
-  .form-color-label {
-    font-size: 0.85rem;
-    color: var(--color-gris-mig);
-  }
-
-  .form-fieldset-inline {
-    margin: 0;
-    padding: 0;
-    border: none;
-
-    legend {
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  .form-fieldset-block {
-    padding: 1rem;
-    border: 1px dashed
-      color.adjust(map.get($theme-colors, "tertiary"), $lightness: -18%);
-    border: 1px dashed oklch(80% 0.04 50);
-    border-radius: 0.5rem;
-
-    legend {
-      padding: 0 0.5em;
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  .form-radio-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.25rem;
-
-    &--vertical {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  }
-
-  .form-radio-label,
-  .form-checkbox-label {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: var(--color-gris-fosc);
-    cursor: pointer;
-
-    &:hover input:not(:disabled) ~ * {
-      color: var(--color-terra);
-    }
-
-    &--inline {
-      min-width: 200px;
-    }
-  }
-
-  .form-radio,
-  .form-checkbox {
-    flex-shrink: 0;
-    width: 1.15rem;
-    height: 1.15rem;
-    background: var(--color-blanc);
-    border: 2px solid
-      color.adjust(map.get($theme-colors, "primary"), $lightness: -5%);
-    border: 2px solid oklch(70% 0.05 47);
-    cursor: pointer;
-    appearance: none;
-    margin-top: 0.1em;
-  }
-
-  .form-radio {
-    border-radius: 50%;
-
-    &:checked {
-      background: var(--color-terra);
-      border-color: var(--color-terra);
-      box-shadow: inset 0 0 0 3px var(--color-blanc);
-    }
-  }
-
-  .form-checkbox {
-    border-radius: 0.25rem;
-
-    &:checked {
-      background: var(--color-terra);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 8'%3E%3Cpath stroke='white' stroke-width='1.5' fill='none' d='M1 4l3 3 5-6'/%3E%3C/svg%3E");
-      background-size: 70%;
-      background-position: center;
-      background-repeat: no-repeat;
-      border-color: var(--color-terra);
-    }
-
-    &:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-  }
-
-  .form-radio:focus,
-  .form-checkbox:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px
-      rgba(
-        color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
-        0.25
-      );
-    box-shadow: 0 0 0 3px oklch(52% 0.1 47 / 0.25);
-    border-color: color.adjust(
-      map.get($theme-colors, "primary"),
-      $lightness: -14%
-    );
-    border-color: oklch(52% 0.1 47);
   }
 
   .form-checkbox-grid {
@@ -1340,4 +1338,4 @@
       transition: none;
     }
   }
-} // inscripcio-form
+}
