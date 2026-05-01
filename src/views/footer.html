@@ -5,68 +5,66 @@
   <div class="footer__top pt-5 pb-3">
     <div class="container-lg">
 
-      <ul class="row list-unstyled">
+      <ul class="footer__top-content list-unstyled gap-3">
 
-        <li class="actualitat col-6 col-lg-3"><span class="fs-5 fw-bold">Actualitat</span>
-          <ul class="list-unstyled ps-3 d-grid gap-1 mt-2">
+        <li class="actualitat">
+
+          <span class="fs-5 fw-bold text-black-50">Actualitat</span>
+          <ul class="footer__top-area list-unstyled ps-3">
+
             <li>Notícies</li>
             <li>Agenda</li>
-            <li>L'Alba</li>
-            <li>Entrevistes</li>
             <li>Avisos</li>
             <li>Butlletí digital</li>
             <li>Xarxes socials</li>
             <li>Hemeroteca</li>
             <li>RSS</li>
-            <li>Contacte de premsa</li>
           </ul>
         </li>
 
-        <li class="ajuntament col-6 col-lg-3">
-          <span class="fs-5 fw-bold">Ajuntament</span>
-          <ul id="footer-menu-1" class="list-unstyled ps-3 d-grid gap-1 mt-2">
+        <li class="ajuntament">
+
+          <span class="fs-5 fw-bold text-black-50">Ajuntament</span>
+          <ul class="footer__top-area list-unstyled ps-3">
+
             <li>L'Ajuntament</li>
             <li>Informació oficial</li>
             <li>Plens municipals</li>
             <li>Juntes de govern</li>
-            <li>Marc d'integritat institucional</li>
-            <li>Participació ciutadana</li>
-            <li>Plans, campanyes i programes</li>
             <li>Transparència</li>
             <li>Protecció de dades</li>
             <li>Seu electrònica</li>
           </ul>
+
         </li>
 
-        <li class="col-6 col-lg-3 municipi">
-          <div class="d-flex flex-column">
-            <span class="fs-5 fw-bold">El municipi</span>
-            <ul class="list-unstyled ps-3 d-grid gap-1 mt-2">
-              <li>Com arribar-hi</li>
-              <li>Transport públic</li>
-              <li>Equipaments</li>
-              <li>Guia de carrers / Plànol</li>
-              <li>Directori del municipi</li>
-              <li>Informació del municipi</li>
-              <li>Galeria d'imatges</li>
-              <li>Policia Local</li>
-              <li>Turisme</li>
-              <li>Informació geogràfica</li>
-            </ul>
-          </div>
+        <li class="municipi">
+
+          <span class="fs-5 fw-bold text-black-50">El municipi</span>
+          <ul class=" footer__top-area list-unstyled ps-3 ">
+            <li>Com arribar-hi</li>
+            <li>Transport públic</li>
+            <li>Guia de carrers / Plànol</li>
+            <li>Informació del municipi</li>
+            <li>Galeria d'imatges</li>
+            <li>Policia Local</li>
+            <li>Turisme</li>
+          </ul>
+
         </li>
 
-        <li class="col-6 col-lg-3 serveis"><span class="fs-5 fw-bold">Serveis i tràmits</span>
-          <ul class="list-unstyled ps-3 d-grid gap-2 mt-2">
+        <li class="serveis ">
+          <span class="fs-5 fw-bold text-black-50">Serveis i tràmits</span>
+          <ul class="footer__top-area list-unstyled ps-3">
             <li>Oficines municipals</li>
             <li>Catàleg de Serveis</li>
             <li>Tràmits i gestions</li>
             <li>Notificacions electròniques</li>
             <li>Impostos</li>
             <li>Factura electrònica</li>
-            <li>Finestreta Única Empresarial (FUE)</li>
-            <li>Verificació de documents electrònics</li>
+
           </ul>
+
         </li>
 
       </ul>
@@ -74,39 +72,40 @@
   </div>
 
   <!-- Zona 2: logo + navegació + xarxes -->
-  <div class="footer__nav">
-    <div class="container-lg">
-      <nav class="navbar pt-3 pb-3 justify-content-between border-top border-bottom">
-        <span class="navbar-brand">Taller d'artesania de terrissa</span>
-        <div class="mx-auto">
-          <include src="./views/nav.html"></include>
-        </div>
-        <div class="d-flex gap-3">
-          <a href="#" class="text-tertiary"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="text-tertiary"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#" class="text-tertiary"><i class="fa-brands fa-google"></i></a>
-        </div>
-      </nav>
+
+  <div class="footer__nav container-lg py-3 border-top">
+
+    <span class="navbar-brand text-black-50 fw-bold ">Taller d'artesania de terrissa</span>
+
+    <nav class="navbar">
+      <include src="./views/nav.html"></include>
+    </nav>
+
+    <div class="footer__nav-social container-fluid col-12 col-md-4 d-flex flex-row gap-3">
+      <a href="#" class="text-tertiary"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#" class="text-tertiary"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#" class="text-tertiary"><i class="fa-brands fa-google"></i></a>
     </div>
+
   </div>
 
   <!-- Zona 3: franja legal / UOC -->
-  <div class="footer__legal py-4">
-    <div class="container-lg">
-      <div class="row align-items-center">
-        <div class="col-2">
-          <img src="/src/assets/images/Logotipo_UOC.png" alt="Universitat Oberta de Catalunya" class="img-fluid">
-        </div>
+  <div class="footer__legal py-4 border-top ">
+    <div class="container-fluid row">
 
-        <div class="col-10">
-          <small>Aquesta pàgina web ha estat creada exclusivament per a l'assignatura Eines <abbr
-              title="Hypertext Markup Language" lang="en">HTML</abbr> i <abbr title="Cascading Style Sheets"
-              lang="en">CSS</abbr>
-            II del Master Desenvolupament de llocs i aplicacions web de la <abrr
-              tittle="Universitat Oberta de Catalunya">
-              UOC</abbr></small>
-        </div>
+
+      <div class="col-3 col-md-2 d-flex align-items-center">
+        <img src="/src/assets/images/Logotipo_UOC.png" alt="Universitat Oberta de Catalunya" class="img-fluid ">
       </div>
+
+      <small class="col-9 col-md-10 align-self-center justify-content-end">Aquesta pàgina web ha estat creada
+        exclusivament per a
+        l'assignatura
+        Eines <abbr title=" Hypertext Markup Language" lang="en"> HTML</abbr> i <abbr title="Cascading Style Sheets"
+          lang="en">CSS</abbr>
+        II del Master Desenvolupament de llocs i aplicacions web de la <abrr tittle="Universitat Oberta de Catalunya">
+          UOC</abbr></small>
+
     </div>
   </div>
 </footer>

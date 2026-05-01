@@ -8,17 +8,12 @@
 }
 
 @layer footer {
-  :is(.page-ponents, .page-inscripcio, .page-article) {
-    .footer__nav .navbar {
-      background-color: transparent;
-    }
-  }
-
   footer {
     position: relative;
     background-color: map.get($theme-colors, "primary");
     color: var(--color-tertiary);
 
+    //Faig una transició suau entre el main i el footer
     &::before {
       position: absolute;
       top: -8rem;
@@ -34,31 +29,95 @@
       pointer-events: none;
     }
 
-    .footer__nav .navbar-nav {
+    .footer__top-content {
+      display: flex;
       flex-direction: column;
-      gap: 0.25rem;
-
       @media (min-width: 768px) {
         flex-direction: row;
-        gap: 1.5rem;
+        justify-content: space-around;
       }
     }
 
-    .navbar-nav .nav-link {
-      color: var(--color-tertiary);
+    .footer__top-area {
+      li {
+        display: inline;
+        line-height: 2rem;
+        &::after {
+          content: "·";
+          margin: 0.5rem;
+        }
 
-      &.active {
+        &:last-child::after {
+          content: " ";
+        }
+
+        @media (min-width: 768px) {
+          display: flex;
+          &::after {
+            content: "";
+          }
+        }
+      }
+    }
+  }
+
+  .footer__nav {
+    @media (min-width: 768px) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-nav {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: row;
+      justify-content: center;
+      gap: 1rem;
+
+      @media (min-width: 768px) {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .nav-link {
         color: var(--color-tertiary);
-        border-bottom: none;
-        text-decoration: none;
-      }
+        justify-content: center;
+        gap: 1.5rem;
 
-      &:hover {
-        transform: none;
+        &.active {
+          color: var(--color-tertiary);
+          border-bottom: none;
+          text-decoration: none;
+        }
+
+        &:hover {
+          transform: none;
+        }
       }
     }
-    .fa-brands {
+
+    .navbar-brand {
+      display: none;
+
+      @media (min-width: 768px) {
+        display: flex;
+        flex: 1;
+        font-family: $font-family-serif;
+      }
+    }
+
+    .footer__nav-social {
       color: var(--color-tertiary);
+      justify-content: center;
+      flex: 1;
+
+      @media (min-width: 768px) {
+        justify-content: flex-end;
+        padding: 0;
+        margin: 0;
+      }
     }
 
     ul {
