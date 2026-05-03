@@ -8,14 +8,14 @@
       }
     }
 
-    /*    #navbarNav {
-      &.show {
-        background-color: black;
-      }
-    }*/
     .navbar {
       color: text-white;
       background-color: transparent;
+
+      &:has(.navbar-collapse.show) {
+        background-color: black;
+        box-shadow: 0 6px 16px rgb(255 255 255 / 0.6);
+      }
 
       .navbar-brand {
         color: var(--color-tertiary);
@@ -46,6 +46,10 @@
 
     .navbar {
       background-color: var(--color-tertiary);
+
+      &:has(.navbar-collapse.show) {
+        box-shadow: 0 24px 16px rgb(0 0 0 / 0.25);
+      }
     }
 
     .navbar .navbar-brand {
@@ -62,6 +66,11 @@
     transform: translateY(-4px);
     border-bottom: 2px solid var(--color-primary);
     text-shadow: 0 2px 4px var(--color-primary);
+
+    &:hover {
+      border-bottom-color: var(--color-secondary);
+      text-shadow: 0 2px 4px var(--color-secondary);
+    }
   }
 
   footer:has(.navbar) {
