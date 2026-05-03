@@ -176,9 +176,28 @@
             <div class="card my-5 shadow-lg container-md">
                 <div class="row g-0">
                     <div class="col-12 col-md-9">
-                        <img src="../assets/images/card-ritual.jpg"
-                            class="img-fluid w-100 h-100 object-fit-cover rounded-top rounded-md-start"
-                            alt="El ritual del centrat">
+                        <picture>
+                            <source type="image/avif" srcset="
+                                ../assets/images/card-ritual.jpg?as=avif&width=480 480w,
+                                ../assets/images/card-ritual.jpg?as=avif&width=800 800w,
+                                ../assets/images/card-ritual.jpg?as=avif&width=1000 1000w
+                            " sizes="(max-width: 767px) 100vw, (max-width: 991px) 540px, (max-width: 1199px) 720px, 855px" />
+                            <source type="image/webp" srcset="
+                                ../assets/images/card-ritual.jpg?as=webp&width=480 480w,
+                                ../assets/images/card-ritual.jpg?as=webp&width=800 800w,
+                                ../assets/images/card-ritual.jpg?as=webp&width=1000 1000w
+                            " sizes="(max-width: 767px) 100vw, (max-width: 991px) 540px, (max-width: 1199px) 720px, 855px" />
+                            <img src="../assets/images/card-ritual.jpg?width=1000"
+                                srcset="
+                                    ../assets/images/card-ritual.jpg?width=480 480w,
+                                    ../assets/images/card-ritual.jpg?width=800 800w,
+                                    ../assets/images/card-ritual.jpg?width=1000 1000w
+                                "
+                                sizes="(max-width: 767px) 100vw, (max-width: 991px) 540px, (max-width: 1199px) 720px, 855px"
+                                class="img-fluid w-100 h-100 object-fit-cover rounded-top rounded-md-start"
+                                loading="lazy"
+                                alt="El ritual del centrat" />
+                        </picture>
                     </div>
 
                     <div class="col-12 col-md-3">
