@@ -902,7 +902,11 @@
         grid-column: 1 / -1;
       }
 
-      &:has(.form-control:invalid:not(:placeholder-shown):not(:focus))::after {
+      &:has(
+          .form-control:invalid:not(:placeholder-shown):not(:focus):not(
+              [type="date"]
+            ):not([type="time"]):not([type="datetime-local"])
+        )::after {
         content: "✕ Valor no vàlid";
         display: block;
         font-size: 0.78rem;
@@ -1007,13 +1011,17 @@
         border-color: oklab(85% -0.002 0.002);
       }
 
-      &:invalid:not(:placeholder-shown):not(:focus) {
+      &:invalid:not(:placeholder-shown):not(:focus):not([type="date"]):not(
+          [type="time"]
+        ):not([type="datetime-local"]) {
         border-color: var(--color-error);
         box-shadow: 0 0 0 3px rgb(181 58 48 / 0.2);
         box-shadow: 0 0 0 3px oklch(47% 0.14 25 / 0.2);
       }
 
-      &:valid:not(:placeholder-shown):not(:focus) {
+      &:valid:not(:placeholder-shown):not(:focus):not([type="file"]):not(
+          [type="color"]
+        ):not([type="time"]):not([type="datetime-local"]) {
         border: 2px solid var(--color-success);
         box-shadow: inset 0 0 4px 1px var(--color-success);
       }

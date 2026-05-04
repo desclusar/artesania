@@ -9,7 +9,7 @@
     }
 
     .navbar {
-      color: text-white;
+      color: var(--color-white);
       background-color: transparent;
 
       &:has(.navbar-collapse.show) {

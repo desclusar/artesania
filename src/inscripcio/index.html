@@ -8,7 +8,7 @@
     <title>Terrissa a Sant Fost | Inscripció</title>
 </head>
 
-<body class="page-inscripcio d-flex flex-column min-vh-100 gap-3">
+<body class="page-inscripcio d-flex flex-column min-vh-100">
 
     <include src="./views/header.html"></include>
 
@@ -22,7 +22,9 @@
             </div>
         </section>
 
-        <section class="inscripcio-container container">
+        <section class="inscripcio-container container py-0">
+
+            <h2 class="element-invisible d-none">Formulari d'inscripció</h2>
 
             <div class="inscripcio-info p-4">
                 <p class="py-4">Emplena el formulari per reservar la teva plaça. Les places són limitades i s'assignen
@@ -33,20 +35,20 @@
                     10 de 60 places ocupades
                 </meter>
 
-                <label for="places-meter" class="inscripcio-info__meter-label my-4">Places disponibles: <output
-                        id="places-output">22</output> de 60</label>
+                <p class="inscripcio-info__meter-label my-4">Places disponibles: <output id="places-output">22</output>
+                    de 60</p>
                 <progress class="inscripcio-info__progress" id="inscripcio-progress" max="100" value="63">63%</progress>
             </div>
 
             <form id="form-inscripcio" class="inscripcio-form" method="post" action="/inscripcio/enviar"
                 enctype="multipart/form-data" novalidate autocomplete="on"
-                aria-label="Formulari d'inscripció a les Jornades de Terrissa" netlify>
+                aria-label="Formulari d&apos;inscripció a les Jornades de Terrissa" data-netlify="true">
                 <input type="hidden" name="edicio" value="2026">
                 <input type="hidden" name="csrf_token" value="abc123xyz">
 
                 <!-- ===== 1. DADES PERSONALS ===== -->
-                <fieldset class="form-section p-4" id="seccio-personal">
-                    <legend class="form-section__legend">
+                <fieldset class="form-section" id="seccio-personal">
+                    <legend class="form-section__legend px-0 py-3">
                         <span class="form-section__num">1</span>
                         Dades personals
                     </legend>
@@ -54,11 +56,13 @@
                     <div class="form-grid">
 
                         <div class="form-group">
-                            <label for="nom" class="form-label form-label--required">Nom</label>
+                            <label for="nom" class="form-label form-label--required ">Nom</label>
                             <input type="text" id="nom" name="nom" class="form-control" placeholder="El teu nom"
-                                required minlength="2" maxlength="50" autocomplete="given-name" aria-required="true"
+                                required minlength="2" maxlength="50" autocomplete="given-name"
                                 aria-describedby="nom-hint">
-                            <small id="nom-hint" class="form-text">Tal com apareix al DNI</small>
+                            <small id="nom-hint" class="form-text text-secondary fst-italic p-0 m-0">Tal com
+                                apareix al
+                                DNI</small>
                         </div>
 
                         <div class="form-group">
@@ -71,8 +75,7 @@
                         <div class="form-group">
                             <label for="email" class="form-label form-label--required">Correu electrònic</label>
                             <input type="email" id="email" name="email" class="form-control"
-                                placeholder="nom@exemple.cat" required autocomplete="email" inputmode="email"
-                                aria-required="true">
+                                placeholder="nom@exemple.cat" required autocomplete="email" inputmode="email">
                         </div>
 
                         <div class="form-group">
@@ -99,7 +102,7 @@
                         <div class="form-group form-group--full">
                             <label for="adreca" class="form-label">Adreça</label>
                             <input type="text" id="adreca" name="adreca" class="form-control"
-                                placeholder="Carrer, número, pis..." autocomplete="street-address" maxlength="200">
+                                placeholder="Carrer, número, pis..." autocomplete="address-line1" maxlength="200">
                         </div>
 
                         <div class="form-group">
@@ -196,13 +199,14 @@
                 </fieldset>
 
                 <!-- ===== 2. SELECCIÓ DE TALLERS ===== -->
-                <fieldset class="form-section p-4" id="seccio-tallers">
-                    <legend class="form-section__legend">
+                <fieldset class="form-section" id="seccio-tallers">
+                    <legend class="form-section__legend px-0 py-3">
                         <span class="form-section__num">2</span>
                         Selecció de tallers
                     </legend>
 
-                    <p class="form-section__desc">Selecciona els tallers als quals vols assistir. Pots escollir fins a 3
+                    <p class="form-section__desc text-primary">Selecciona els tallers als quals vols assistir. Pots
+                        escollir fins a 3
                         tallers per dia.</p>
 
                     <div class="form-grid">
@@ -210,11 +214,13 @@
                         <div class="form-group form-group--full">
                             <label for="dies" class="form-label form-label--required">Dies d'assistència</label>
                             <select id="dies" name="dies[]" class="form-select" required multiple size="3">
-                                <option value="2026-05-15">Divendres 15 de maig</option>
-                                <option value="2026-05-16">Dissabte 16 de maig</option>
-                                <option value="2026-05-17">Diumenge 17 de maig</option>
+                                <option class="fs-6" value="2026-05-15">Divendres 15 de maig</option>
+                                <option class="fs-6" value="2026-05-16">Dissabte 16 de maig</option>
+                                <option class="fs-6" value="2026-05-17">Diumenge 17 de maig</option>
                             </select>
-                            <small class="form-text">Mantén Ctrl (o Cmd al Mac) per seleccionar múltiples dies</small>
+                            <small class="form-text fst-italic text-secondary">Mantén Ctrl per seleccionar
+                                múltiples
+                                dies</small>
                         </div>
 
                         <div class="form-group form-group--full">
@@ -316,7 +322,7 @@
 
                 <!-- ===== 3. NIVELL I EXPERIÈNCIA ===== -->
                 <fieldset class="form-section p-4" id="seccio-nivell">
-                    <legend class="form-section__legend">
+                    <legend class="form-section__legend px-0 py-3">
                         <span class="form-section__num">3</span>
                         Nivell i experiència
                     </legend>
@@ -330,14 +336,14 @@
                                 <optgroup label="Sense experiència">
                                     <option value="principiant-absolut">Principiant absolut (mai he tocat argila)
                                     </option>
-                                    <option value="principiant">Principiant (1–2 tallers anteriors)</option>
+                                    <option value="principiant">Principiant (1-2 tallers anteriors)</option>
                                 </optgroup>
                                 <optgroup label="Experiència bàsica">
                                     <option value="basic">Bàsic (1 any d'experiència)</option>
-                                    <option value="elemental">Elemental (2–3 anys)</option>
+                                    <option value="elemental">Elemental (2-3 anys)</option>
                                 </optgroup>
                                 <optgroup label="Experiència avançada">
-                                    <option value="intermedi">Intermedi (3–5 anys)</option>
+                                    <option value="intermedi">Intermedi (3-5 anys)</option>
                                     <option value="avançat">Avançat (+5 anys)</option>
                                     <option value="professional">Professional / Artesà</option>
                                 </optgroup>
@@ -351,10 +357,10 @@
                         </div>
 
                         <div class="form-group form-group--full">
-                            <label for="nivell-rang" class="form-label">
-                                Autovaloració del nivell: <output id="nivell-rang-output"
-                                    for="nivell-rang">5</output>/10
-                            </label>
+                            <div class="d-flex align-items-baseline gap-1">
+                                <label for="nivell-rang" class="form-label mb-0">Autovaloració del nivell:</label>
+                                <output id="nivell-rang-output" for="nivell-rang">5</output>/10
+                            </div>
                             <input type="range" id="nivell-rang" name="nivell_rang" class="form-range" min="1" max="10"
                                 step="1" value="5"
                                 oninput="document.getElementById('nivell-rang-output').value = this.value">
@@ -405,7 +411,7 @@
 
                 <!-- ===== 4. TRANSPORT I ALLOTJAMENT ===== -->
                 <fieldset class="form-section p-4" id="seccio-logistica">
-                    <legend class="form-section__legend">
+                    <legend class="form-section__legend px-0 py-3">
                         <span class="form-section__num">4</span>
                         Transport i allotjament
                     </legend>
@@ -501,7 +507,7 @@
 
                 <!-- ===== 5. ALIMENTACIÓ I NECESSITATS ===== -->
                 <fieldset class="form-section p-4" id="seccio-alimentacio">
-                    <legend class="form-section__legend">
+                    <legend class="form-section__legend px-0 py-3">
                         <span class="form-section__num">5</span>
                         Alimentació i necessitats especials
                     </legend>
@@ -591,7 +597,7 @@
 
                 <!-- ===== 6. PAGAMENT ===== -->
                 <fieldset class="form-section p-4" id="seccio-pagament">
-                    <legend class="form-section__legend">
+                    <legend class="form-section__legend px-0 py-3">
                         <span class="form-section__num">6</span>
                         Informació de pagament
                     </legend>
@@ -698,7 +704,7 @@
 
                 <!-- ===== 7. COM ENS HAS CONEGUT ===== -->
                 <fieldset class="form-section p-4" id="seccio-referral">
-                    <legend class="form-section__legend">
+                    <legend class="form-section__legend px-0 py-3">
                         <span class="form-section__num">7</span>
                         Com has conegut les jornades?
                     </legend>
@@ -766,7 +772,7 @@
 
                 <!-- ===== 8. CONSENTIMENTS ===== -->
                 <fieldset class="form-section form-section--consents p-4" id="seccio-consents">
-                    <legend class="form-section__legend">
+                    <legend class="form-section__legend px-0 py-3">
                         <span class="form-section__num">8</span>
                         Consentiments i condicions
                     </legend>
@@ -775,13 +781,13 @@
 
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="accept_condicions" value="si"
-                                id="accept-condicions" required aria-required="true">
+                                id="accept-condicions" required>
                             <label class="form-check-label" for="accept-condicions">
                                 He llegit i accepto les
-                                <a href="/condicions" target="_blank" rel="noopener">condicions generals
+                                <a href="#" target="_blank" rel="noopener">condicions generals
                                     d'inscripció</a>
                                 i la
-                                <a href="/politica-cancelacio" target="_blank" rel="noopener">política de
+                                <a href="#" target="_blank" rel="noopener">política de
                                     cancel·lació</a>.
                                 <strong>(obligatori)</strong>
                             </label>
@@ -789,10 +795,10 @@
 
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="accept_lopd" value="si"
-                                id="accept-lopd" required aria-required="true">
+                                id="accept-lopd" required>
                             <label class="form-check-label" for="accept-lopd">
                                 He llegit i accepto la
-                                <a href="/privacitat" target="_blank" rel="noopener">política de privacitat</a>
+                                <a href="#" target="_blank" rel="noopener">política de privacitat</a>
                                 i el tractament de les meves dades personals d'acord amb el RGPD.
                                 <strong>(obligatori)</strong>
                             </label>
@@ -820,18 +826,18 @@
                 </fieldset>
 
                 <!-- ===== ACCIONS ===== -->
-                <div class="form-actions">
+                <div class="form-actions m-0 p-0">
                     <div class="form-actions__info">
                         <p>En enviar el formulari, rebràs un correu de confirmació a l'adreça indicada.</p>
                     </div>
                     <div class="form-actions__buttons">
-                        <button type="reset" class="btn btn--secondary">
+                        <button type="reset" class="btn btn--secondary z-1">
                             Esborrar formulari
                         </button>
-                        <button type="button" class="btn btn--outline" id="btn-previsualitzar">
+                        <button type="button" class="btn btn--outline z-1" id="btn-previsualitzar">
                             Previsualitzar inscripció
                         </button>
-                        <button type="submit" class="btn btn--primary" id="btn-enviar">
+                        <button type="submit" class="btn btn--primary z-1" id="btn-enviar">
                             Enviar inscripció
                         </button>
                     </div>
