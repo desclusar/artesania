@@ -4,14 +4,14 @@
   #MIXINS
 \*------------------------------------*/
 
-// Centra el contingut amb flexbox (eix horitzontal i vertical)
+// centra el contingut amb flexbox (eix horitzontal i vertical)
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-// Declara un contenidor per a container queries
+// declara un contenidor per a container queries
 @mixin make-container($name, $type: inline-size) {
   container-type: $type;
   container-name: $name;
