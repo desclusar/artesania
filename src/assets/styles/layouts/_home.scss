@@ -178,9 +178,9 @@
         ul {
           display: grid;
           gap: 0;
-          height: auto;
           grid-template-columns: repeat(8, 12vw);
           grid-template-rows: repeat(4, 12vw);
+          height: auto;
         }
 
         ul h5 {
@@ -227,6 +227,7 @@
         h1 {
           text-align: end;
         }
+
         h2 {
           text-align: end;
         }
@@ -234,13 +235,13 @@
 
       @media (min-width: 1024px) and (max-width: 1450px) {
         h1 {
-          grid-row: 2 / 3;
           align-self: end;
+          grid-row: 2 / 3;
         }
 
         h2 {
-          grid-row: 1 / 2;
           align-self: end;
+          grid-row: 1 / 2;
         }
       }
     }
