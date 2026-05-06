@@ -298,14 +298,14 @@
     padding-bottom: 2.5rem;
 
     .swiper-wrapper {
-      height: auto;
       align-items: stretch;
+      height: auto;
     }
 
     .swiper-slide {
-      height: auto;
       display: flex;
       flex-direction: column;
+      height: auto;
     }
 
     .card {
@@ -783,6 +783,7 @@
     gap: clamp(1.5rem, 3vh, 2.5rem);
     gap: clamp(1.5rem, 3dvh, 2.5rem);
   }
+
   .form-section {
     @include mix.make-container(form-section);
 
@@ -1479,9 +1480,9 @@
       border-color: var(--color-terra-fosc);
 
       &:hover:not(:disabled) {
+        color: var(--color-blanc);
         background: var(--color-secondary);
         border-color: var(--color-secondary);
-        color: var(--color-blanc);
         box-shadow: 0 4px 12px oklch(38% 0.09 45 / 0.3);
       }
     }
@@ -1510,9 +1511,9 @@
       border-color: var(--color-terra);
 
       &:hover:not(:disabled) {
+        color: var(--color-blanc);
         background: oklch(38% 0.09 45);
         border-color: oklch(38% 0.09 45);
-        color: var(--color-blanc);
         box-shadow: 0 4px 12px oklch(38% 0.09 45 / 0.3);
       }
     }
@@ -1577,14 +1578,14 @@
 // Fora de @layer per sobreescriure swiper.css i Bootstrap
 
 .ponents-swiper .swiper-wrapper {
-  height: auto;
   align-items: stretch;
+  height: auto;
 }
 
 .ponents-swiper .swiper-slide {
-  height: auto;
   display: flex;
   flex-direction: column;
+  height: auto;
 }
 
 .ponents-swiper .card {
@@ -1610,13 +1611,13 @@
 }
 
 .form-range::-webkit-slider-runnable-track {
+  height: 0.4rem;
   background: var(--color-primary);
   border-radius: 1rem;
-  height: 0.4rem;
 }
 
 .form-range::-moz-range-track {
+  height: 0.4rem;
   background: var(--color-primary);
   border-radius: 1rem;
-  height: 0.4rem;
 }

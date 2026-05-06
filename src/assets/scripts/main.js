@@ -2,11 +2,14 @@
  * Import dependencies from node_modules
  * see commented examples below
  */
+import '@fortawesome/fontawesome-free/css/all.css';
+import 'swiper/swiper.css';
+import 'swiper/modules/navigation.css';
+import 'swiper/modules/pagination.css';
 import * as bootstrap from 'bootstrap';
 import Lenis from 'lenis';
 import Swiper from 'swiper';
 import { Navigation, Pagination, A11y } from 'swiper/modules';
-//import Swal from 'sweetalert2';
 import * as CookieConsent from 'vanilla-cookieconsent';
 import { config as cookieConfig } from './cookieconsent-config.js';
 
