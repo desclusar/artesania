@@ -25,6 +25,9 @@
         url("../images/poster-home/poster1200.webp") type("image/webp"),
         url("../images/poster-home/poster1200.jpg") type("image/jpeg")
       );
+    }
+
+    @media (min-width: 1024px) {
       overflow: hidden;
       aspect-ratio: 16 / 9;
     }
@@ -224,6 +227,8 @@
   a la ressolució que es començava a sobreposar*/
 
       @media (min-width: 768px) and (max-width: 1024px) {
+        padding-bottom: 9rem;
+
         h1 {
           text-align: end;
         }
@@ -233,7 +238,7 @@
         }
       }
 
-      @media (min-width: 1024px) and (max-width: 1450px) {
+      @media (min-width: 1024px) and (max-width: 1200px) {
         h1 {
           align-self: end;
           grid-row: 2 / 3;
@@ -285,6 +290,65 @@
       .card-title {
         font-family: $font-family-serif;
       }
+    }
+  }
+
+  .ponents-swiper {
+    margin-block: 1.5rem;
+    padding-bottom: 2.5rem;
+
+    .swiper-wrapper {
+      height: auto;
+      align-items: stretch;
+    }
+
+    .swiper-slide {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .card-body {
+        flex: 1;
+      }
+
+      .card-img-top {
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
+      .card-picture {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+
+        .card-img-top {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .card-title {
+        font-family: $font-family-serif;
+      }
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: map.get($theme-colors, "primary");
+
+      &::after {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+    }
+
+    .swiper-pagination-bullet-active {
+      background: map.get($theme-colors, "primary");
     }
   }
 
@@ -349,23 +413,12 @@
 
   .blockquote {
     font-family: $font-family-serif;
-
-    &::before {
-      position: absolute;
-      top: 0.25rem;
-      left: 0.75rem;
-      font-family: $font-family-serif;
-      font-size: 3.5rem;
-      line-height: 1;
-      color: map.get($theme-colors, “primary”);
-      opacity: 0.25;
-      content: “\201C”;
-    }
   }
 
   .page-article figure:has(blockquote) {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .article :is(h2, h3) {
@@ -419,37 +472,82 @@
   #INSCRIPCIO
 \*------------------------------------*/
 
-  @layer inscripcio-hero, inscripcio-form;
+  .page-inscripcio {
+    //creo una CSS Custom property per a que l'usuari pugui canviarla
+    --gradient-start: rgb(128 40 6);
 
-  @layer inscripcio-hero {
-    .page-inscripcio {
-      //creo una CSS Custom property per a que l'usuari pugui canviarla
-      --gradient-start: rgb(128 40 6);
+    background: linear-gradient(
+      to bottom,
+      var(--gradient-start) 0%,
+      map.get($theme-colors, "primary") 100%
+    );
 
+    @supports (color: oklch(0 0 0)) {
       background: linear-gradient(
         to bottom,
         var(--gradient-start) 0%,
-        map.get($theme-colors, "primary") 100%
+        oklch(60% 0.11 42) 100%
       );
+    }
+  }
 
-      @supports (color: oklch(0 0 0)) {
-        background: linear-gradient(
-          to bottom,
-          var(--gradient-start) 0%,
-          oklch(60% 0.11 42) 100%
-        );
-      }
+  .inscripcio-hero {
+    @include mix.flex-center;
+    min-height: 28vh;
+    min-height: 28dvh;
+
+    padding: 4vh 6vw;
+    padding: 4dvh 6dvw;
+
+    background:
+      linear-gradient(
+        to bottom,
+        transparent 50%,
+        color.adjust(map.get($theme-colors, "primary"), $lightness: -17%) 100%
+      ),
+      linear-gradient(
+        160deg,
+        rgba(
+            color.adjust(map.get($theme-colors, "primary"), $lightness: -17%),
+            0.52
+          )
+          0%,
+        rgba(
+            color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
+            0.78
+          )
+          100%
+      ),
+      image-set(
+          url("../images/inscripcio-hero/card-ritual768.avif")
+            type("image/avif"),
+          url("../images/inscripcio-hero/card-ritual768.webp")
+            type("image/webp"),
+          url("../images/inscripcio-hero/card-ritual768.jpg") type("image/jpeg")
+        )
+        center / cover no-repeat;
+
+    @supports (color: oklch(0 0 0)) {
+      background:
+        linear-gradient(to bottom, transparent 50%, oklch(42% 0.13 42) 100%),
+        linear-gradient(
+          160deg,
+          oklch(42% 0.13 42 / 0.52) 0%,
+          oklch(8% 0.04 40 / 0.8) 100%
+        ),
+        image-set(
+            url("../images/inscripcio-hero/card-ritual768.avif")
+              type("image/avif"),
+            url("../images/inscripcio-hero/card-ritual768.webp")
+              type("image/webp"),
+            url("../images/inscripcio-hero/card-ritual768.jpg")
+              type("image/jpeg")
+          )
+          center / cover no-repeat;
     }
 
-    .inscripcio-hero {
-      @include mix.flex-center;
-      min-height: 28vh;
-      min-height: 28dvh;
-
-      padding: 4vh 6vw;
-      padding: 4dvh 6dvw;
-
-      background:
+    @media (min-width: 768px) {
+      background-image:
         linear-gradient(
           to bottom,
           transparent 50%,
@@ -469,60 +567,21 @@
             100%
         ),
         image-set(
-            url("../images/inscripcio-hero/card-ritual768.avif")
-              type("image/avif"),
-            url("../images/inscripcio-hero/card-ritual768.webp")
-              type("image/webp"),
-            url("../images/inscripcio-hero/card-ritual768.jpg")
-              type("image/jpeg")
-          )
-          center / cover no-repeat;
+          url("../images/inscripcio-hero/card-ritual1200.avif")
+            type("image/avif"),
+          url("../images/inscripcio-hero/card-ritual1200.webp")
+            type("image/webp"),
+          url("../images/inscripcio-hero/card-ritual1200.jpg")
+            type("image/jpeg")
+        );
 
       @supports (color: oklch(0 0 0)) {
-        background:
+        background-image:
           linear-gradient(to bottom, transparent 50%, oklch(42% 0.13 42) 100%),
           linear-gradient(
             160deg,
             oklch(42% 0.13 42 / 0.52) 0%,
             oklch(8% 0.04 40 / 0.8) 100%
-          ),
-          image-set(
-              url("../images/inscripcio-hero/card-ritual768.avif")
-                type("image/avif"),
-              url("../images/inscripcio-hero/card-ritual768.webp")
-                type("image/webp"),
-              url("../images/inscripcio-hero/card-ritual768.jpg")
-                type("image/jpeg")
-            )
-            center / cover no-repeat;
-      }
-
-      @media (min-width: 768px) {
-        background-image:
-          linear-gradient(
-            to bottom,
-            transparent 50%,
-            color.adjust(map.get($theme-colors, "primary"), $lightness: -17%)
-              100%
-          ),
-          linear-gradient(
-            160deg,
-            rgba(
-                color.adjust(
-                  map.get($theme-colors, "primary"),
-                  $lightness: -17%
-                ),
-                0.52
-              )
-              0%,
-            rgba(
-                color.adjust(
-                  map.get($theme-colors, "primary"),
-                  $lightness: -46%
-                ),
-                0.78
-              )
-              100%
           ),
           image-set(
             url("../images/inscripcio-hero/card-ritual1200.avif")
@@ -532,56 +591,45 @@
             url("../images/inscripcio-hero/card-ritual1200.jpg")
               type("image/jpeg")
           );
-
-        @supports (color: oklch(0 0 0)) {
-          background-image:
-            linear-gradient(
-              to bottom,
-              transparent 50%,
-              oklch(42% 0.13 42) 100%
-            ),
-            linear-gradient(
-              160deg,
-              oklch(42% 0.13 42 / 0.52) 0%,
-              oklch(8% 0.04 40 / 0.8) 100%
-            ),
-            image-set(
-              url("../images/inscripcio-hero/card-ritual1200.avif")
-                type("image/avif"),
-              url("../images/inscripcio-hero/card-ritual1200.webp")
-                type("image/webp"),
-              url("../images/inscripcio-hero/card-ritual1200.jpg")
-                type("image/jpeg")
-            );
-        }
       }
+    }
 
-      @media (min-width: 1200px) {
+    @media (min-width: 1200px) {
+      background-image:
+        linear-gradient(
+          to bottom,
+          transparent 50%,
+          color.adjust(map.get($theme-colors, "primary"), $lightness: -17%) 100%
+        ),
+        linear-gradient(
+          160deg,
+          rgba(
+              color.adjust(map.get($theme-colors, "primary"), $lightness: -17%),
+              0.52
+            )
+            0%,
+          rgba(
+              color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
+              0.78
+            )
+            100%
+        ),
+        image-set(
+          url("../images/inscripcio-hero/card-ritual1920.avif")
+            type("image/avif"),
+          url("../images/inscripcio-hero/card-ritual1920.webp")
+            type("image/webp"),
+          url("../images/inscripcio-hero/card-ritual1920.jpg")
+            type("image/jpeg")
+        );
+
+      @supports (color: oklch(0 0 0)) {
         background-image:
-          linear-gradient(
-            to bottom,
-            transparent 50%,
-            color.adjust(map.get($theme-colors, "primary"), $lightness: -17%)
-              100%
-          ),
+          linear-gradient(to bottom, transparent 50%, oklch(42% 0.13 42) 100%),
           linear-gradient(
             160deg,
-            rgba(
-                color.adjust(
-                  map.get($theme-colors, "primary"),
-                  $lightness: -17%
-                ),
-                0.52
-              )
-              0%,
-            rgba(
-                color.adjust(
-                  map.get($theme-colors, "primary"),
-                  $lightness: -46%
-                ),
-                0.78
-              )
-              100%
+            oklch(42% 0.13 42 / 0.52) 0%,
+            oklch(8% 0.04 40 / 0.8) 100%
           ),
           image-set(
             url("../images/inscripcio-hero/card-ritual1920.avif")
@@ -591,727 +639,692 @@
             url("../images/inscripcio-hero/card-ritual1920.jpg")
               type("image/jpeg")
           );
-
-        @supports (color: oklch(0 0 0)) {
-          background-image:
-            linear-gradient(
-              to bottom,
-              transparent 50%,
-              oklch(42% 0.13 42) 100%
-            ),
-            linear-gradient(
-              160deg,
-              oklch(42% 0.13 42 / 0.52) 0%,
-              oklch(8% 0.04 40 / 0.8) 100%
-            ),
-            image-set(
-              url("../images/inscripcio-hero/card-ritual1920.avif")
-                type("image/avif"),
-              url("../images/inscripcio-hero/card-ritual1920.webp")
-                type("image/webp"),
-              url("../images/inscripcio-hero/card-ritual1920.jpg")
-                type("image/jpeg")
-            );
-        }
-      }
-
-      &__inner {
-        max-width: min(90vw, 800px);
-        max-width: min(90svw, 800px);
-        text-align: center;
-      }
-
-      &__title {
-        font-size: clamp(1.8rem, 4vw, 3.5rem);
-        font-size: clamp(1.8rem, 4dvw, 3.5rem);
-        color: white;
-        margin-bottom: 0.5em;
-      }
-
-      &__subtitle {
-        font-size: clamp(1rem, 2vw, 1.5rem);
-        font-size: clamp(1rem, 2dvw, 1.5rem);
-        font-style: italic;
-
-        color: color.adjust(map.get($theme-colors, "primary"), $lightness: 22%);
-        color: oklch(88% 0.05 60);
-        margin-bottom: 0.25em;
-      }
-
-      &__dates {
-        display: inline-block;
-        margin: 2rem 0;
-        padding: 0.4em 1.2em;
-
-        font-size: clamp(0.85rem, 1.5vw, 1.1rem);
-        font-size: clamp(0.85rem, 1.5dvw, 1.1rem);
-
-        color: var(--color-crema);
-
-        background: rgba(
-          color.adjust(map.get($theme-colors, "primary"), $lightness: 5%),
-          0.3
-        );
-        background: oklch(75% 0.1 47 / 0.3);
-
-        border: 1px solid
-          rgba(
-            color.adjust(map.get($theme-colors, "primary"), $lightness: 15%),
-            0.5
-          );
-        border: 1px solid oklch(80% 0.06 55 / 0.5);
-        border-radius: 2em;
       }
     }
 
-    .inscripcio-container {
-      max-width: min(92vw, 1100px);
-      max-width: min(92lvw, 1100px);
-      margin: 0 auto;
-
-      padding: clamp(0.5rem, 4vh, 4rem) clamp(1rem, 4vw, 2.5rem);
-      padding: clamp(0.5rem, 4dvh, 4rem) clamp(1rem, 4dvw, 2.5rem);
+    &__inner {
+      max-width: min(90vw, 800px);
+      max-width: min(90svw, 800px);
+      text-align: center;
     }
 
-    .inscripcio-info {
-      display: grid;
-      //gap: 0.75rem;
-
-      padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 3vw, 1.5rem);
-      padding: clamp(1rem, 3dvh, 1.5rem) clamp(1rem, 3dvw, 1.5rem);
-      background: var(--color-tertiary);
-      border-radius: 0.5rem;
-
-      margin-bottom: clamp(1.5rem, 4vh, 3rem);
-      margin-bottom: clamp(1.5rem, 4dvh, 3rem);
-
-      p {
-        margin: 0;
-        color: var(--color-gris-fosc);
-      }
-
-      &__meter {
-        width: 100%;
-        height: 1.25rem;
-        border-radius: 0.5rem;
-        overflow: hidden;
-
-        &::-webkit-meter-bar {
-          background: color.adjust(
-            map.get($theme-colors, "tertiary"),
-            $lightness: -5%
-          );
-          background: oklab(90% -0.005 0.005);
-          border-radius: 0.5rem;
-        }
-
-        &::-webkit-meter-optimum-value {
-          background: var(--color-success);
-        }
-
-        &::-webkit-meter-suboptimum-value {
-          background: var(--color-warning);
-        }
-
-        &::-webkit-meter-even-less-good-value {
-          background: var(--color-error);
-        }
-      }
-
-      &__meter-label {
-        font-size: 0.85rem;
-        color: var(--color-gris-mig);
-      }
-
-      &__progress {
-        width: 100%;
-        height: 0.5rem;
-        border-radius: 0.25rem;
-        overflow: hidden;
-        appearance: none;
-
-        &::-webkit-progress-bar {
-          background: color.adjust(
-            map.get($theme-colors, "tertiary"),
-            $lightness: -8%
-          );
-          background: oklab(88% -0.003 0.003);
-          border-radius: 0.25rem;
-        }
-
-        &::-webkit-progress-value {
-          background: linear-gradient(
-            90deg,
-            var(--color-primary) 0%,
-            var(--color-secondary) 100%
-          );
-          border-radius: 0.25rem;
-        }
-      }
+    &__title {
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+      font-size: clamp(1.8rem, 4dvw, 3.5rem);
+      color: white;
+      margin-bottom: 0.5em;
     }
 
-    .inscripcio-form {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(1.5rem, 3vh, 2.5rem);
-      gap: clamp(1.5rem, 3dvh, 2.5rem);
+    &__subtitle {
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-size: clamp(1rem, 2dvw, 1.5rem);
+      font-style: italic;
+
+      color: color.adjust(map.get($theme-colors, "primary"), $lightness: 22%);
+      color: oklch(88% 0.05 60);
+      margin-bottom: 0.25em;
     }
-  } // inscripcio-hero
 
-  @layer inscripcio-form {
-    .form-section {
-      @include mix.make-container(form-section);
+    &__dates {
+      display: inline-block;
+      margin: 2rem 0;
+      padding: 0.4em 1.2em;
 
-      padding: 2rem;
+      font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+      font-size: clamp(0.85rem, 1.5dvw, 1.1rem);
 
-      // padding: clamp(1.25rem, 3vw, 2rem);
-      // padding: clamp(1.25rem, 3dvw, 2rem);
+      color: var(--color-crema);
 
-      background: var(--color-tertiary);
+      background: rgba(
+        color.adjust(map.get($theme-colors, "primary"), $lightness: 5%),
+        0.3
+      );
+      background: oklch(75% 0.1 47 / 0.3);
+
       border: 1px solid
         rgba(
-          color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
-          0.2
-        );
-      border: 1px solid oklch(96% 0.015 85 / 0.2);
-      border-radius: 0.75rem;
-      transition: box-shadow 0.2s ease;
-
-      box-shadow: 0 2px 10px
-        rgba(
-          color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
-          0.3
-        );
-      box-shadow: 0 2px 10px oklch(10% 0.04 40 / 0.3);
-
-      &:focus-within {
-        box-shadow: 0 4px 24px
-          rgba(
-            color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
-            0.45
-          );
-        box-shadow: 0 4px 24px oklch(8% 0.04 40 / 0.45);
-        border-color: rgba(
-          color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
+          color.adjust(map.get($theme-colors, "primary"), $lightness: 15%),
           0.5
         );
-        border-color: oklch(96% 0.015 85 / 0.5);
-      }
-
-      &--consents {
-        background: linear-gradient(
-          135deg,
-          color.adjust(map.get($theme-colors, "tertiary"), $lightness: 2%) 0%,
-          color.adjust(map.get($theme-colors, "secondary"), $lightness: 42%)
-            100%
-        );
-
-        @supports (color: oklch(0 0 0)) {
-          background: linear-gradient(
-            135deg,
-            oklch(97% 0.015 80) 0%,
-            oklch(96% 0.012 220) 100%
-          );
-        }
-      }
-
-      &__legend {
-        display: flex;
-        align-items: center;
-        gap: 0.6em;
-        padding: 0 0.75em;
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        font-size: clamp(1rem, 2svw, 1.25rem);
-        font-weight: 700;
-        color: var(--color-primary);
-      }
-
-      &__num {
-        display: inline-flex;
-        flex-shrink: 0;
-        align-items: center;
-        justify-content: center;
-        width: 1.8em;
-        height: 1.8em;
-        font-size: 0.85em;
-        font-weight: 800;
-        color: var(--color-tertiary);
-        background: var(--color-primary);
-        border-radius: 50%;
-      }
-
-      &__desc {
-        font-size: 0.9rem;
-        color: var(--color-tertiary);
-        margin-bottom: 1rem;
-      }
-
-      .form-label {
-        color: var(--color-neutral);
-
-        &--required::after {
-          color: var(--color-vermell-raku);
-        }
-      }
-
-      .form-hint,
-      .form-range-labels,
-      .form-color-label {
-        color: var(--color-secondary);
-      }
-
-      .form-fieldset-block {
-        border-color: rgba(
-          color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
-          0.25
-        );
-        border-color: oklch(96% 0.015 85 / 0.25);
-      }
-
-      output {
-        color: var(--color-tertiary);
-      }
+      border: 1px solid oklch(80% 0.06 55 / 0.5);
+      border-radius: 2em;
     }
+  }
 
-    .form-grid {
-      display: grid;
+  .inscripcio-container {
+    max-width: min(92vw, 1100px);
+    max-width: min(92lvw, 1100px);
+    margin: 0 auto;
 
-      gap: clamp(1rem, 2vh, 1.5rem) clamp(0.75rem, 2vw, 1.25rem);
-      gap: clamp(1rem, 2dvh, 1.5rem) clamp(0.75rem, 2dvw, 1.25rem);
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    padding: clamp(0.5rem, 4vh, 4rem) clamp(1rem, 4vw, 2.5rem);
+    padding: clamp(0.5rem, 4dvh, 4rem) clamp(1rem, 4dvw, 2.5rem);
+  }
 
-      margin-top: 1rem;
-    }
+  .inscripcio-info {
+    display: grid;
+    //gap: 0.75rem;
 
-    @container form-section (width < 420px) {
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
+    padding: clamp(1rem, 3vh, 1.5rem) clamp(1rem, 3vw, 1.5rem);
+    padding: clamp(1rem, 3dvh, 1.5rem) clamp(1rem, 3dvw, 1.5rem);
+    background: var(--color-tertiary);
+    border-radius: 0.5rem;
 
-      .form-section__legend {
-        font-size: 1rem;
-      }
-    }
+    margin-bottom: clamp(1.5rem, 4vh, 3rem);
+    margin-bottom: clamp(1.5rem, 4dvh, 3rem);
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-
-      &--full {
-        grid-column: 1 / -1;
-      }
-
-      &:has(
-          .form-control:invalid:not(:placeholder-shown):not(:focus):not(
-              [type="date"]
-            ):not([type="time"]):not([type="datetime-local"])
-        )::after {
-        content: "✕ Valor no vàlid";
-        display: block;
-        font-size: 0.78rem;
-        font-weight: 700;
-        color: var(--color-error);
-      }
-    }
-
-    .form-label {
-      font-size: 0.9rem;
-      font-weight: 600;
+    p {
+      margin: 0;
       color: var(--color-gris-fosc);
-
-      &--required {
-        &::after {
-          font-weight: 700;
-          color: var(--color-vermell-raku);
-          content: " *";
-        }
-      }
     }
 
-    .form-control {
+    &__meter {
       width: 100%;
-      padding: 0.6em 0.85em;
+      height: 1.25rem;
+      border-radius: 0.5rem;
+      overflow: hidden;
 
-      font-family: inherit;
-
-      font-size: clamp(0.875rem, 1.5vw, 1rem);
-      font-size: clamp(0.875rem, 1.5svw, 1rem);
-      line-height: 1.5;
-      color: var(--color-gris-fosc);
-      background: var(--color-blanc);
-
-      border: 1.5px solid
-        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -20%);
-      border: 1.5px solid oklch(78% 0.03 50);
-      border-radius: 0.45rem;
-      transition:
-        border-color 0.15s ease,
-        box-shadow 0.15s ease,
-        background-color 0.15s ease;
-      appearance: none;
-
-      &::placeholder {
-        color: color.adjust(map.get($theme-colors, "neutral"), $lightness: 24%);
-        color: oklab(72% -0.002 0.003);
-      }
-
-      &:hover {
-        border-color: color.adjust(
-          map.get($theme-colors, "primary"),
-          $lightness: -10%
-        );
-        border-color: oklch(65% 0.06 47);
-      }
-
-      &:focus {
-        outline: none;
-
-        border-color: color.adjust(
-          map.get($theme-colors, "primary"),
-          $lightness: -14%
-        );
-        border-color: oklch(52% 0.1 47);
-
-        box-shadow:
-          0 0 0 3px
-            rgba(
-              color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
-              0.18
-            ),
-          0 1px 3px
-            rgba(
-              color.adjust(map.get($theme-colors, "primary"), $lightness: -30%),
-              0.1
-            );
-        box-shadow:
-          0 0 0 3px oklch(52% 0.1 47 / 0.18),
-          0 1px 3px oklch(30% 0.08 45 / 0.1);
-
+      &::-webkit-meter-bar {
         background: color.adjust(
           map.get($theme-colors, "tertiary"),
-          $lightness: 5%
+          $lightness: -5%
         );
-        background: oklch(99.5% 0.005 80);
+        background: oklab(90% -0.005 0.005);
+        border-radius: 0.5rem;
       }
 
-      &:disabled,
-      &[readonly] {
-        color: var(--color-gris-mig);
-        background: color.adjust(
-          map.get($theme-colors, "tertiary"),
-          $lightness: -8%
-        );
-        background: oklab(94% -0.003 0.003);
-        cursor: not-allowed;
-        border-color: color.adjust(
-          map.get($theme-colors, "tertiary"),
-          $lightness: -15%
-        );
-        border-color: oklab(85% -0.002 0.002);
+      &::-webkit-meter-optimum-value {
+        background: var(--color-success);
       }
 
-      &:invalid:not(:placeholder-shown):not(:focus):not([type="date"]):not(
-          [type="time"]
-        ):not([type="datetime-local"]) {
-        border-color: var(--color-error);
-        box-shadow: 0 0 0 3px rgb(181 58 48 / 0.2);
-        box-shadow: 0 0 0 3px oklch(47% 0.14 25 / 0.2);
+      &::-webkit-meter-suboptimum-value {
+        background: var(--color-warning);
       }
 
-      &:valid:not(:placeholder-shown):not(:focus):not([type="file"]):not(
-          [type="color"]
-        ):not([type="time"]):not([type="datetime-local"]) {
-        border: 2px solid var(--color-success);
-        box-shadow: inset 0 0 4px 1px var(--color-success);
+      &::-webkit-meter-even-less-good-value {
+        background: var(--color-error);
       }
     }
 
-    .form-select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238c5a3c' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-      background-position: right 0.85em center;
-      background-repeat: no-repeat;
-      cursor: pointer;
-      padding-right: 2.5em;
-
-      &[multiple] {
-        background-image: none;
-        padding-right: 0.85em;
-      }
-    }
-
-    .form-textarea {
-      resize: vertical;
-      min-height: 6rem;
-      min-height: max(6rem, 10dvh);
-
-      @supports not (height: 1dvh) {
-        min-height: 6rem;
-      }
-    }
-
-    .form-range {
-      width: 100%;
-      height: 0.4rem;
-
-      background: color.adjust(
-        map.get($theme-colors, "tertiary"),
-        $lightness: -8%
-      );
-      background: oklab(88% -0.003 0.003);
-
-      border-radius: 1rem;
-      cursor: pointer;
-      appearance: none;
-
-      &::-webkit-slider-thumb {
-        width: 1.3rem;
-        height: 1.3rem;
-        background: var(--color-secondary);
-        border: 2px solid var(--color-blanc);
-        border-radius: 50%;
-        transition:
-          background 0.15s,
-          transform 0.15s;
-        appearance: none;
-        box-shadow: 0 1px 4px
-          rgba(
-            color.adjust(map.get($theme-colors, "primary"), $lightness: -30%),
-            0.35
-          );
-        box-shadow: 0 1px 4px oklch(30% 0.08 45 / 0.35);
-
-        &:hover {
-          background: var(--color-terra-fosc);
-          transform: scale(1.15);
-        }
-      }
-
-      &::-moz-range-thumb {
-        width: 1.3rem;
-        height: 1.3rem;
-        background: var(--color-terra);
-        border: 2px solid var(--color-blanc);
-        border-radius: 50%;
-        transition:
-          background 0.15s,
-          transform 0.15s;
-        cursor: pointer;
-        box-shadow: 0 1px 4px oklch(30% 0.08 45 / 0.35);
-
-        &:hover {
-          background: var(--color-terra-fosc);
-          transform: scale(1.15);
-        }
-      }
-
-      &:focus {
-        outline: none;
-
-        &::-webkit-slider-thumb {
-          box-shadow: 0 0 0 4px
-            rgba(
-              color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
-              0.25
-            );
-          box-shadow: 0 0 0 4px oklch(52% 0.1 47 / 0.25);
-        }
-      }
-    }
-
-    .form-range-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.75rem;
-      color: var(--color-gris-mig);
-      margin-top: 0.25rem;
-    }
-
-    .form-file {
-      font-size: 0.875rem;
-      color: var(--color-gris-fosc);
-      cursor: pointer;
-
-      &::file-selector-button {
-        padding: 0.45em 1em;
-        font-size: 0.875rem;
-        color: var(--color-blanc);
-        background: var(--color-terra);
-        border: none;
-        border-radius: 0.35rem;
-        transition: background 0.15s;
-        cursor: pointer;
-        margin-right: 0.75em;
-
-        &:hover {
-          background: var(--color-terra-fosc);
-        }
-      }
-    }
-
-    .form-color-group {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .form-color {
-      width: 3rem;
-      height: 3rem;
-      padding: 0.15rem;
-      background: none;
-      border: 2px solid
-        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -20%);
-      border: 2px solid oklch(78% 0.03 50);
-      border-radius: 50%;
-      transition:
-        transform 0.15s,
-        box-shadow 0.15s;
-      cursor: pointer;
-
-      &::-webkit-color-swatch-wrapper {
-        padding: 0;
-        border-radius: 50%;
-      }
-
-      &::-webkit-color-swatch {
-        border: none;
-        border-radius: 50%;
-      }
-
-      &:hover {
-        transform: scale(1.1);
-        box-shadow: 0 2px 8px
-          rgba(
-            color.adjust(map.get($theme-colors, "primary"), $lightness: -20%),
-            0.3
-          );
-        box-shadow: 0 2px 8px oklch(40% 0.08 45 / 0.3);
-      }
-    }
-
-    .form-color-label {
+    &__meter-label {
       font-size: 0.85rem;
       color: var(--color-gris-mig);
     }
 
-    .form-fieldset-inline {
-      margin: 0;
-      padding: 0;
-      border: none;
+    &__progress {
+      width: 100%;
+      height: 0.5rem;
+      border-radius: 0.25rem;
+      overflow: hidden;
+      appearance: none;
 
-      legend {
-        margin-bottom: 0.5rem;
+      &::-webkit-progress-bar {
+        background: color.adjust(
+          map.get($theme-colors, "tertiary"),
+          $lightness: -8%
+        );
+        background: oklab(88% -0.003 0.003);
+        border-radius: 0.25rem;
       }
+
+      &::-webkit-progress-value {
+        background: linear-gradient(
+          90deg,
+          var(--color-primary) 0%,
+          var(--color-secondary) 100%
+        );
+        border-radius: 0.25rem;
+      }
+    }
+  }
+
+  .inscripcio-form {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vh, 2.5rem);
+    gap: clamp(1.5rem, 3dvh, 2.5rem);
+  }
+  .form-section {
+    @include mix.make-container(form-section);
+
+    padding: 2rem;
+
+    // padding: clamp(1.25rem, 3vw, 2rem);
+    // padding: clamp(1.25rem, 3dvw, 2rem);
+
+    background: var(--color-tertiary);
+    border: 1px solid
+      rgba(
+        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
+        0.2
+      );
+    border: 1px solid oklch(96% 0.015 85 / 0.2);
+    border-radius: 0.75rem;
+    transition: box-shadow 0.2s ease;
+
+    box-shadow: 0 2px 10px
+      rgba(
+        color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
+        0.3
+      );
+    box-shadow: 0 2px 10px oklch(10% 0.04 40 / 0.3);
+
+    &:focus-within {
+      box-shadow: 0 4px 24px
+        rgba(
+          color.adjust(map.get($theme-colors, "primary"), $lightness: -46%),
+          0.45
+        );
+      box-shadow: 0 4px 24px oklch(8% 0.04 40 / 0.45);
+      border-color: rgba(
+        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
+        0.5
+      );
+      border-color: oklch(96% 0.015 85 / 0.5);
+    }
+
+    &--consents {
+      background: linear-gradient(
+        135deg,
+        color.adjust(map.get($theme-colors, "tertiary"), $lightness: 2%) 0%,
+        color.adjust(map.get($theme-colors, "secondary"), $lightness: 42%) 100%
+      );
+
+      @supports (color: oklch(0 0 0)) {
+        background: linear-gradient(
+          135deg,
+          oklch(97% 0.015 80) 0%,
+          oklch(96% 0.012 220) 100%
+        );
+      }
+    }
+
+    &__legend {
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+      padding: 0 0.75em;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-size: clamp(1rem, 2svw, 1.25rem);
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    &__num {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 1.8em;
+      height: 1.8em;
+      font-size: 0.85em;
+      font-weight: 800;
+      color: var(--color-tertiary);
+      background: var(--color-primary);
+      border-radius: 50%;
+    }
+
+    &__desc {
+      font-size: 0.9rem;
+      color: var(--color-tertiary);
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      color: var(--color-neutral);
+
+      &--required::after {
+        color: var(--color-vermell-raku);
+      }
+    }
+
+    :where(.form-hint, .form-range-labels, .form-color-label) {
+      color: var(--color-secondary);
     }
 
     .form-fieldset-block {
-      padding: 1rem;
-      border: 1px dashed
-        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -18%);
-      border: 1px dashed oklch(80% 0.04 50);
-      border-radius: 0.5rem;
-
-      legend {
-        padding: 0 0.5em;
-        margin-bottom: 0.5rem;
-      }
+      border-color: rgba(
+        color.adjust(map.get($theme-colors, "tertiary"), $lightness: -8%),
+        0.25
+      );
+      border-color: oklch(96% 0.015 85 / 0.25);
     }
 
-    .form-radio-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.25rem;
+    output {
+      color: var(--color-tertiary);
+    }
+  }
 
-      &--vertical {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
+  .form-grid {
+    display: grid;
+
+    gap: clamp(1rem, 2vh, 1.5rem) clamp(0.75rem, 2vw, 1.25rem);
+    gap: clamp(1rem, 2dvh, 1.5rem) clamp(0.75rem, 2dvw, 1.25rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+
+    margin-top: 1rem;
+  }
+
+  @container form-section (width < 420px) {
+    .form-grid {
+      grid-template-columns: 1fr;
     }
 
-    .form-radio-label,
-    .form-checkbox-label {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      color: var(--color-gris-fosc);
-      cursor: pointer;
+    .form-section__legend {
+      font-size: 1rem;
+    }
+  }
 
-      &:hover input:not(:disabled) ~ * {
-        color: var(--color-terra);
-      }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
 
-      &--inline {
-        min-width: 200px;
-      }
+    &--full {
+      grid-column: 1 / -1;
     }
 
-    .form-radio,
-    .form-checkbox {
-      flex-shrink: 0;
-      width: 1.15rem;
-      height: 1.15rem;
-      background: var(--color-blanc);
-      border: 2px solid
-        color.adjust(map.get($theme-colors, "primary"), $lightness: -5%);
-      border: 2px solid oklch(70% 0.05 47);
-      cursor: pointer;
-      appearance: none;
-      margin-top: 0.1em;
+    &:has(
+        .form-control:invalid:not(:placeholder-shown):not(:focus):not(
+            [type="date"]
+          ):not([type="time"]):not([type="datetime-local"])
+      )::after {
+      content: "✕ Valor no vàlid";
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--color-error);
     }
+  }
 
-    .form-radio {
-      border-radius: 50%;
+  .form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-gris-fosc);
 
-      &:checked {
-        background: var(--color-terra);
-        border-color: var(--color-terra);
-        box-shadow: inset 0 0 0 3px var(--color-blanc);
+    &--required {
+      &::after {
+        font-weight: 700;
+        color: var(--color-vermell-raku);
+        content: " *";
       }
     }
+  }
 
-    .form-checkbox {
-      border-radius: 0.25rem;
+  .form-control {
+    width: 100%;
+    padding: 0.6em 0.85em;
 
-      &:checked {
-        background: var(--color-terra);
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 8'%3E%3Cpath stroke='white' stroke-width='1.5' fill='none' d='M1 4l3 3 5-6'/%3E%3C/svg%3E");
-        background-size: 70%;
-        background-position: center;
-        background-repeat: no-repeat;
-        border-color: var(--color-terra);
-      }
+    font-family: inherit;
 
-      &:disabled {
-        opacity: 0.45;
-        cursor: not-allowed;
-      }
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    font-size: clamp(0.875rem, 1.5svw, 1rem);
+    line-height: 1.5;
+    color: var(--color-gris-fosc);
+    background: var(--color-blanc);
+
+    border: 1.5px solid
+      color.adjust(map.get($theme-colors, "tertiary"), $lightness: -20%);
+    border: 1.5px solid oklch(78% 0.03 50);
+    border-radius: 0.45rem;
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease,
+      background-color 0.15s ease;
+    appearance: none;
+
+    &::placeholder {
+      color: color.adjust(map.get($theme-colors, "neutral"), $lightness: 24%);
+      color: oklab(72% -0.002 0.003);
     }
 
-    .form-check-input:focus,
-    .form-checkbox:focus {
+    &:hover {
+      border-color: color.adjust(
+        map.get($theme-colors, "primary"),
+        $lightness: -10%
+      );
+      border-color: oklch(65% 0.06 47);
+    }
+
+    &:focus {
       outline: none;
-      box-shadow: 0 0 0 3px
-        rgba(
-          color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
-          0.25
-        );
-      box-shadow: 0 0 0 3px oklch(52% 0.1 47 / 0.25);
+
       border-color: color.adjust(
         map.get($theme-colors, "primary"),
         $lightness: -14%
       );
       border-color: oklch(52% 0.1 47);
+
+      box-shadow:
+        0 0 0 3px
+          rgba(
+            color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
+            0.18
+          ),
+        0 1px 3px
+          rgba(
+            color.adjust(map.get($theme-colors, "primary"), $lightness: -30%),
+            0.1
+          );
+      box-shadow:
+        0 0 0 3px oklch(52% 0.1 47 / 0.18),
+        0 1px 3px oklch(30% 0.08 45 / 0.1);
+
+      background: color.adjust(
+        map.get($theme-colors, "tertiary"),
+        $lightness: 5%
+      );
+      background: oklch(99.5% 0.005 80);
     }
 
-    //TODO aquesta part
-    .inscripcio-form {
-      .form-check-input:checked {
-        background-color: var(--color-primary);
-        border-color: var(--color-primary);
+    &:where(:disabled, [readonly]) {
+      color: var(--color-gris-mig);
+      background: color.adjust(
+        map.get($theme-colors, "tertiary"),
+        $lightness: -8%
+      );
+      background: oklab(94% -0.003 0.003);
+      cursor: not-allowed;
+      border-color: color.adjust(
+        map.get($theme-colors, "tertiary"),
+        $lightness: -15%
+      );
+      border-color: oklab(85% -0.002 0.002);
+    }
+
+    &:invalid:not(:placeholder-shown):not(:focus):not([type="date"]):not(
+        [type="time"]
+      ):not([type="datetime-local"]) {
+      border-color: var(--color-error);
+      box-shadow: 0 0 0 3px rgb(181 58 48 / 0.2);
+      box-shadow: 0 0 0 3px oklch(47% 0.14 25 / 0.2);
+    }
+
+    &:valid:not(:placeholder-shown):not(:focus):not([type="file"]):not(
+        [type="color"]
+      ):not([type="time"]):not([type="datetime-local"]) {
+      border: 2px solid var(--color-success);
+      box-shadow: inset 0 0 4px 1px var(--color-success);
+    }
+  }
+
+  .form-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238c5a3c' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-position: right 0.85em center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    padding-right: 2.5em;
+
+    &[multiple] {
+      background-image: none;
+      padding-right: 0.85em;
+    }
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 6rem;
+    min-height: max(6rem, 10dvh);
+
+    @supports not (height: 1dvh) {
+      min-height: 6rem;
+    }
+  }
+
+  .form-range {
+    width: 100%;
+    height: 0.4rem;
+
+    background: var(--color-primary);
+
+    border-radius: 1rem;
+    cursor: pointer;
+    appearance: none;
+
+    &::-webkit-slider-thumb {
+      width: 1.3rem;
+      height: 1.3rem;
+      background: var(--color-secondary);
+      border: 2px solid var(--color-blanc);
+      border-radius: 50%;
+      transition:
+        background 0.15s,
+        transform 0.15s;
+      appearance: none;
+      box-shadow: 0 1px 4px
+        rgba(
+          color.adjust(map.get($theme-colors, "primary"), $lightness: -30%),
+          0.35
+        );
+      box-shadow: 0 1px 4px oklch(30% 0.08 45 / 0.35);
+
+      &:hover {
+        background: var(--color-terra-fosc);
+        transform: scale(1.15);
       }
+    }
+
+    &::-moz-range-thumb {
+      width: 1.3rem;
+      height: 1.3rem;
+      background: var(--color-terra);
+      border: 2px solid var(--color-blanc);
+      border-radius: 50%;
+      transition:
+        background 0.15s,
+        transform 0.15s;
+      cursor: pointer;
+      box-shadow: 0 1px 4px oklch(30% 0.08 45 / 0.35);
+
+      &:hover {
+        background: var(--color-terra-fosc);
+        transform: scale(1.15);
+      }
+    }
+
+    &:focus {
+      outline: none;
+
+      &::-webkit-slider-thumb {
+        box-shadow: 0 0 0 4px
+          rgba(
+            color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
+            0.25
+          );
+        box-shadow: 0 0 0 4px oklch(52% 0.1 47 / 0.25);
+      }
+    }
+  }
+
+  .form-range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--color-gris-mig);
+    margin-top: 0.25rem;
+  }
+
+  .form-file {
+    font-size: 0.875rem;
+    color: var(--color-gris-fosc);
+    cursor: pointer;
+
+    &::file-selector-button {
+      padding: 0.45em 1em;
+      font-size: 0.875rem;
+      color: var(--color-blanc);
+      background: var(--color-terra);
+      border: none;
+      border-radius: 0.35rem;
+      transition: background 0.15s;
+      cursor: pointer;
+      margin-right: 0.75em;
+
+      &:hover {
+        background: var(--color-terra-fosc);
+      }
+    }
+  }
+
+  .form-color-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .form-color {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.15rem;
+    background: none;
+    border: 2px solid
+      color.adjust(map.get($theme-colors, "tertiary"), $lightness: -20%);
+    border: 2px solid oklch(78% 0.03 50);
+    border-radius: 50%;
+    transition:
+      transform 0.15s,
+      box-shadow 0.15s;
+    cursor: pointer;
+
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+      border-radius: 50%;
+    }
+
+    &::-webkit-color-swatch {
+      border: none;
+      border-radius: 50%;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 2px 8px
+        rgba(
+          color.adjust(map.get($theme-colors, "primary"), $lightness: -20%),
+          0.3
+        );
+      box-shadow: 0 2px 8px oklch(40% 0.08 45 / 0.3);
+    }
+  }
+
+  .form-color-label {
+    font-size: 0.85rem;
+    color: var(--color-gris-mig);
+  }
+
+  .form-fieldset-inline {
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    legend {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .form-fieldset-block {
+    padding: 1rem;
+    border: 1px dashed
+      color.adjust(map.get($theme-colors, "tertiary"), $lightness: -18%);
+    border: 1px dashed oklch(80% 0.04 50);
+    border-radius: 0.5rem;
+
+    legend {
+      padding: 0 0.5em;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .form-radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+
+    &--vertical {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  :where(.form-radio-label, .form-checkbox-label) {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--color-gris-fosc);
+    cursor: pointer;
+
+    &:hover input:not(:disabled) ~ * {
+      color: var(--color-terra);
+    }
+  }
+
+  .form-radio-label--inline,
+  .form-checkbox-label--inline {
+    min-width: 200px;
+  }
+
+  :where(.form-radio, .form-checkbox) {
+    flex-shrink: 0;
+    width: 1.15rem;
+    height: 1.15rem;
+    background: var(--color-blanc);
+    border: 2px solid
+      color.adjust(map.get($theme-colors, "primary"), $lightness: -5%);
+    border: 2px solid oklch(70% 0.05 47);
+    cursor: pointer;
+    appearance: none;
+    margin-top: 0.1em;
+  }
+
+  .form-radio {
+    border-radius: 50%;
+
+    &:checked {
+      background: var(--color-terra);
+      border-color: var(--color-terra);
+      box-shadow: inset 0 0 0 3px var(--color-blanc);
+    }
+  }
+
+  .form-checkbox {
+    border-radius: 0.25rem;
+
+    &:checked {
+      background: var(--color-terra);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 8'%3E%3Cpath stroke='white' stroke-width='1.5' fill='none' d='M1 4l3 3 5-6'/%3E%3C/svg%3E");
+      background-size: 70%;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-color: var(--color-terra);
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  :where(.form-check-input, .form-checkbox):focus {
+    outline: none;
+    box-shadow: 0 0 0 3px
+      rgba(
+        color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
+        0.25
+      );
+    box-shadow: 0 0 0 3px oklch(52% 0.1 47 / 0.25);
+    border-color: color.adjust(
+      map.get($theme-colors, "primary"),
+      $lightness: -14%
+    );
+    border-color: oklch(52% 0.1 47);
+  }
+
+  //TODO aquesta part
+  .inscripcio-form {
+    .form-check-input:checked {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
     }
   }
 
@@ -1374,7 +1387,7 @@
 
     .form-checkbox {
       flex-shrink: 0;
-      margin-top: 0.2em;
+      margin-top: 0.2rem;
     }
 
     a {
@@ -1401,13 +1414,8 @@
     &__info {
       min-width: min(100%, 280px);
       font-size: 0.85rem;
-      color: var(--color-tertiary);
+      color: var(--color-white);
       flex: 1;
-
-      p {
-        margin: 0;
-        color: var(--color-tertiary);
-      }
     }
 
     &__buttons {
@@ -1471,21 +1479,9 @@
       border-color: var(--color-terra-fosc);
 
       &:hover:not(:disabled) {
-        background: #{color.adjust(
-            map.get($theme-colors, "primary"),
-            $lightness: -25%
-          )};
-        background: oklch(38% 0.09 45);
-        border-color: #{color.adjust(
-            map.get($theme-colors, "primary"),
-            $lightness: -25%
-          )};
-        border-color: oklch(38% 0.09 45);
-        box-shadow: 0 4px 12px
-          rgba(
-            color.adjust(map.get($theme-colors, "primary"), $lightness: -25%),
-            0.3
-          );
+        background: var(--color-secondary);
+        border-color: var(--color-secondary);
+        color: var(--color-blanc);
         box-shadow: 0 4px 12px oklch(38% 0.09 45 / 0.3);
       }
     }
@@ -1514,11 +1510,10 @@
       border-color: var(--color-terra);
 
       &:hover:not(:disabled) {
-        background: rgba(
-          color.adjust(map.get($theme-colors, "primary"), $lightness: -14%),
-          0.08
-        );
-        background: oklch(52% 0.1 47 / 0.08);
+        background: oklch(38% 0.09 45);
+        border-color: oklch(38% 0.09 45);
+        color: var(--color-blanc);
+        box-shadow: 0 4px 12px oklch(38% 0.09 45 / 0.3);
       }
     }
   }
@@ -1573,8 +1568,55 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    :is(.form-control, .form-radio, .form-checkbox, .btn, .form-color) {
+    :where(.form-control, .form-radio, .form-checkbox, .btn, .form-color) {
       transition: none;
     }
   }
+}
+
+// Fora de @layer per sobreescriure swiper.css i Bootstrap
+
+.ponents-swiper .swiper-wrapper {
+  height: auto;
+  align-items: stretch;
+}
+
+.ponents-swiper .swiper-slide {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.ponents-swiper .card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ponents-swiper .card-body {
+  flex: 1;
+}
+
+.blockquote::before {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.75rem;
+  font-family: $font-family-serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--color-primary);
+  //opacity: 0.25;
+  content: "\201C";
+}
+
+.form-range::-webkit-slider-runnable-track {
+  background: var(--color-primary);
+  border-radius: 1rem;
+  height: 0.4rem;
+}
+
+.form-range::-moz-range-track {
+  background: var(--color-primary);
+  border-radius: 1rem;
+  height: 0.4rem;
 }

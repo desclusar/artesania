@@ -3,12 +3,27 @@
  * see commented examples below
  */
 import * as bootstrap from 'bootstrap';
-// import 'some-node-module';
-// import SomeModule from 'some-node-module';
+import Lenis from 'lenis';
+import Swiper from 'swiper';
+import { Navigation, Pagination, A11y } from 'swiper/modules';
+//import Swal from 'sweetalert2';
+import * as CookieConsent from 'vanilla-cookieconsent';
+import { config as cookieConfig } from './cookieconsent-config.js';
 
-/**
- * Write any other JavaScript below
- */
+// Inicialitza el banner de cookies amb la configuració definida
+CookieConsent.run(cookieConfig);
+
+
+//Configuració lenis
+const lenis = new Lenis();
+lenis.on('scroll', () => { });
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+
 
 const currentPath = window.location.pathname;
 
@@ -25,6 +40,27 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (document.querySelector('.ponents-swiper')) {
+    new Swiper('.ponents-swiper', {
+      modules: [Navigation, Pagination, A11y],
+      slidesPerView: 1,
+      spaceBetween: 32,
+      breakpoints: {
+        576: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      a11y: true,
+    });
+  }
+
   const colorInput = document.querySelector('#color-preferit');
   const page = document.querySelector('.page-inscripcio');
 
