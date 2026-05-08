@@ -12,6 +12,7 @@ import Swiper from 'swiper';
 import { Navigation, Pagination, A11y } from 'swiper/modules';
 import * as CookieConsent from 'vanilla-cookieconsent';
 import { config as cookieConfig } from './cookieconsent-config.js';
+import Swal from 'sweetalert2';
 
 // Inicialitza el banner de cookies amb la configuració definida
 CookieConsent.run(cookieConfig);
@@ -63,6 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
       a11y: true,
     });
   }
+
+  document.querySelectorAll('.form-check__link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      Swal.fire({
+        title: link.dataset.title,
+        text: link.dataset.text,
+        icon: link.dataset.icon ?? 'info',
+        confirmButtonText: 'Tancar',
+      });
+    });
+  });
 
   const colorInput = document.querySelector('#color-preferit');
   const page = document.querySelector('.page-inscripcio');

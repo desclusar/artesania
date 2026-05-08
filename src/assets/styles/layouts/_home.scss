@@ -51,10 +51,12 @@
       font-size: fn.fluid(1.5, 2.5);
       padding-top: 4rem;
       color: map.get($theme-colors, "tertiary");
+      text-align: end;
     }
 
     h2 {
       color: map.get($theme-colors, "primary");
+      text-align: end;
     }
 
     h4 {
@@ -81,6 +83,7 @@
 
     ul {
       display: flex;
+      flex-direction: column;
       flex-wrap: wrap;
       gap: 0.75rem;
       height: 100%;
@@ -109,6 +112,10 @@
 
         @include mix.make-container(taller-card);
 
+        h5:first-of-type {
+          margin-top: auto;
+        }
+
         &.cta {
           cursor: pointer;
         }
@@ -136,12 +143,20 @@
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
       }
 
+      :is(h1, h2) {
+        text-align: start;
+      }
+
       @media (min-width: 1024px) {
         gap: 1vw;
         grid-template-columns: repeat(7, 12vw);
         grid-template-rows: repeat(7, 1fr);
         height: 100dvh;
         padding: 0;
+
+        ul li {
+          overflow: visible;
+        }
 
         h1 {
           z-index: 1;
@@ -182,7 +197,7 @@
           display: grid;
           gap: 0;
           grid-template-columns: repeat(8, 12vw);
-          grid-template-rows: repeat(4, 12vw);
+          grid-template-rows: repeat(4, minmax(12vw, auto));
           height: auto;
         }
 
@@ -222,6 +237,7 @@
           );
         }
       }
+
       /*En aquest ample l'h1 i l'h2 es sobreposaven a sobre 
   de l'últim fill <li> amb el que els puju exactament
   a la ressolució que es començava a sobreposar*/
@@ -229,11 +245,7 @@
       @media (min-width: 768px) and (max-width: 1024px) {
         padding-bottom: 9rem;
 
-        h1 {
-          text-align: end;
-        }
-
-        h2 {
+        :is(h1, h2) {
           text-align: end;
         }
       }
@@ -507,10 +519,8 @@
       ),
       linear-gradient(
         160deg,
-        rgba(fn.theme-color("primary", -17%), 0.52)
-          0%,
-        rgba(fn.theme-color("primary", -46%), 0.78)
-          100%
+        rgba(fn.theme-color("primary", -17%), 0.52) 0%,
+        rgba(fn.theme-color("primary", -46%), 0.78) 100%
       ),
       image-set(
           url("../images/inscripcio-hero/card-ritual768.avif")
@@ -549,10 +559,8 @@
         ),
         linear-gradient(
           160deg,
-          rgba(fn.theme-color("primary", -17%), 0.52)
-            0%,
-          rgba(fn.theme-color("primary", -46%), 0.78)
-            100%
+          rgba(fn.theme-color("primary", -17%), 0.52) 0%,
+          rgba(fn.theme-color("primary", -46%), 0.78) 100%
         ),
         image-set(
           url("../images/inscripcio-hero/card-ritual1200.avif")
@@ -591,10 +599,8 @@
         ),
         linear-gradient(
           160deg,
-          rgba(fn.theme-color("primary", -17%), 0.52)
-            0%,
-          rgba(fn.theme-color("primary", -46%), 0.78)
-            100%
+          rgba(fn.theme-color("primary", -17%), 0.52) 0%,
+          rgba(fn.theme-color("primary", -46%), 0.78) 100%
         ),
         image-set(
           url("../images/inscripcio-hero/card-ritual1920.avif")
