@@ -1,4 +1,7 @@
+@use "sass:color";
+@use "sass:map";
 @use "sass:math";
+@use "variables" as *;
 
 /*------------------------------------*\
   #FUNCTIONS
@@ -9,4 +12,8 @@
   $intercept: $min - math.div($slope * $min-vw, 1600);
 
   @return clamp(#{$min}rem, #{$intercept}rem + #{$slope}vw, #{$max}rem);
+}
+
+@function theme-color($name, $lightness: 0%) {
+  @return color.adjust(map.get($theme-colors, $name), $lightness: $lightness);
 }
